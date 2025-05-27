@@ -4,8 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    private void Awake()
-    {
+    private void Awake(){
         if (instance == null)
         {
             instance = this;
@@ -14,4 +13,6 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+
 }
