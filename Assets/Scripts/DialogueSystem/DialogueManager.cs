@@ -1,26 +1,20 @@
-using System;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public static DialogueManager instance;
+    public static DialogueManager Instance;
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != null && Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
             Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    [Header("Dialogues panel")]
-    [SerializeField] private GameObject _dialoguePanel;
-    [SerializeField] private TextMesh _dialogueBox;
-
-
-    //
-    public Array dialogue;
+    
 }

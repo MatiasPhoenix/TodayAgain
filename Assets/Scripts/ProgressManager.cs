@@ -24,4 +24,6 @@ public class ProgressManager : MonoBehaviour
         Fase3 = false;
 
     public int FinalUnlock = 0;
+
+    public int SetFinalUnlock(int value) => FinalUnlock = value;
 }

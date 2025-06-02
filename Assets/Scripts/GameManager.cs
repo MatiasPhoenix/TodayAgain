@@ -19,59 +19,58 @@ public class GameManager : MonoBehaviour
     public int DayScene = 0;
 
     //Gestione day-scene interno
-    private DaySceneManager _daySceneManager;
+    public DaySceneState DaySceneState;
+    public int CycleNumber = 0;
 
     //Controllo day-scene per la gestione delle interazioni
-    public void ChangeDayScene(DaySceneManager newDaySceneManager)
+    public void ChangeDayScene(DaySceneState newDaySceneState)
     {
-        _daySceneManager = newDaySceneManager;
-        switch (newDaySceneManager)
+        DaySceneState = newDaySceneState;
+        switch (newDaySceneState)
         {
-            case DaySceneManager.day01:
+            case DaySceneState.day01:
                 DayScene = 1;
                 break;
-            case DaySceneManager.day02:
+            case DaySceneState.day02:
                 DayScene = 2;
                 break;
-            case DaySceneManager.day03:
+            case DaySceneState.day03:
                 DayScene = 3;
                 break;
-            case DaySceneManager.day04:
+            case DaySceneState.day04:
                 DayScene = 4;
                 break;
-            case DaySceneManager.day05:
+            case DaySceneState.day05:
                 DayScene = 5;
                 break;
-            case DaySceneManager.day06:
+            case DaySceneState.day06:
                 DayScene = 6;
                 break;
-            case DaySceneManager.day07:
+            case DaySceneState.day07:
                 DayScene = 7;
                 break;
-            case DaySceneManager.day08:
+            case DaySceneState.day08:
                 DayScene = 8;
                 break;
-            case DaySceneManager.day09:
+            case DaySceneState.day09:
                 DayScene = 9;
                 break;
-            case DaySceneManager.day10:
+            case DaySceneState.day10:
                 DayScene = 10;
                 break;
 
             default:
-                Debug.Log($"Nessuna scena {newDaySceneManager} trovata");
+                Debug.Log($"Nessuna scena {newDaySceneState} trovata");
                 break;
         }
     }
     
-    public DaySceneManager GetDayScene() => _daySceneManager;
-    
+    public DaySceneState GetDaySceneEnum() => DaySceneState;
 
-    
-
+    public int GetDayScene() => DayScene;
 }
 
-public enum DaySceneManager
+public enum DaySceneState
 {
     day01,
     day02,

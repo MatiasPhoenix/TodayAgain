@@ -1,0 +1,144 @@
+using UnityEngine;
+
+public class PcManager : MonoBehaviour
+{
+    public static PcManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
+
+    [Header("PC Components")]
+    [SerializeField] private GameObject _pcMasterObject;
+    [SerializeField] private GameObject _pcObjectCycle00;
+    [SerializeField] private GameObject _pcObjectCycle01;
+    [SerializeField] private GameObject _pcObjectCycle02;
+    [SerializeField] private GameObject _pcObjectCycle03;
+    [SerializeField] private GameObject _cameraPcObject;
+    [SerializeField] private GameObject _playerObject;
+
+    [Header("PC Components Cycle 00")]
+    [SerializeField] private GameObject _windowMyComputer;
+    [SerializeField] private GameObject _windowNetwork;
+    [SerializeField] private GameObject _windowReadme;
+    [SerializeField] private GameObject _windowFolder;
+    [SerializeField] private GameObject _windowsTerminal;
+    [SerializeField] private GameObject _windowsStartButton;
+
+    // [Header("PC Components Cycle 01")]
+    // [SerializeField] private GameObject _windowMyComputer01;
+    // [SerializeField] private GameObject _windowNetwork01;
+    // [SerializeField] private GameObject _windowReadme01;
+    // [SerializeField] private GameObject _windowFolder01;
+    // [SerializeField] private GameObject _windowsTerminal01;
+    // [SerializeField] private GameObject _windowsStartButton01;
+
+    // [Header("PC Components Cycle 02")]
+    // [SerializeField] private GameObject _windowMyComputer02;
+    // [SerializeField] private GameObject _windowNetwork02;
+    // [SerializeField] private GameObject _windowReadme02;
+    // [SerializeField] private GameObject _windowFolder02;
+    // [SerializeField] private GameObject _windowsTerminal02;
+    // [SerializeField] private GameObject _windowsStartButton02;
+
+    // [Header("PC Components Cycle 03")]
+    // [SerializeField] private GameObject _windowMyComputer03;
+    // [SerializeField] private GameObject _windowNetwork03;
+    // [SerializeField] private GameObject _windowReadme03;
+    // [SerializeField] private GameObject _windowFolder03;
+    // [SerializeField] private GameObject _windowsTerminal03;
+    // [SerializeField] private GameObject _windowsStartButton03;
+
+    public void GoToWorkOnPc()
+    {
+        _pcMasterObject.SetActive(true);
+        switch (GameManager.instance.CycleNumber)
+        {
+            case 0:
+                _pcObjectCycle00.SetActive(true);
+                break;
+            case 1:
+                _pcObjectCycle01.SetActive(true);
+                break;
+            case 2:
+                _pcObjectCycle02.SetActive(true);
+                break;
+            case 3:
+                _pcObjectCycle03.SetActive(true);
+                break;
+            default:
+                break;
+        }
+        _cameraPcObject.SetActive(true);
+        _playerObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+    }
+        
+
+    public void ExitFromPc()
+    {
+        _pcObjectCycle00.SetActive(false);
+        _pcObjectCycle01.SetActive(false);
+        _pcObjectCycle02.SetActive(false);
+        _pcObjectCycle03.SetActive(false);
+        _pcMasterObject.SetActive(false);
+        _cameraPcObject.SetActive(false);
+        _playerObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        ClickToOpenAndCloseWindow("Start");
+    }
+
+    public void ClickToOpenAndCloseWindow(string nameWindow)
+    {
+        switch (nameWindow)
+        {
+            case "SystemWork":
+                if (_windowMyComputer.activeSelf)
+                    _windowMyComputer.SetActive(false);
+                else
+                    _windowMyComputer.SetActive(true);
+                break;
+            case "SecondaryTasks":
+                if (_windowNetwork.activeSelf)
+                    _windowNetwork.SetActive(false);
+                else
+                    _windowNetwork.SetActive(true);
+                break;
+            case "Readme":
+                if (_windowReadme.activeSelf)
+                    _windowReadme.SetActive(false);
+                else
+                    _windowReadme.SetActive(true);
+                break;
+            case "Folder":
+                if (_windowFolder.activeSelf)
+                    _windowFolder.SetActive(false);
+                else
+                    _windowFolder.SetActive(true);
+                break;
+            case "Terminal":
+                if (_windowsTerminal.activeSelf)
+                    _windowsTerminal.SetActive(false);
+                else
+                    _windowsTerminal.SetActive(true);
+                break;
+            case "Start":
+                if (_windowsStartButton.activeSelf)
+                    _windowsStartButton.SetActive(false);
+                else
+                    _windowsStartButton.SetActive(true);
+                break;
+
+            default:
+                Debug.LogWarning($"There is no window with the name {nameWindow}");
+                break;
+        }
+    }
+}
