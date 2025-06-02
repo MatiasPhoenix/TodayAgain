@@ -55,6 +55,9 @@ public class InteractionScenario : MonoBehaviour
     private IEnumerator ActiveTimer()
     {
         yield return new WaitForSeconds(_timerCount);
+        if (_pcMessage.activeSelf)
+            PcManager.instance.GoToWorkOnPc();
+            
         _mirrorMessage.SetActive(false);
         _pcMessage.SetActive(false);
     }
