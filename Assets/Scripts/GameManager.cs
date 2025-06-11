@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     //Gestione day-scene interno
     public DaySceneState DaySceneState;
     public int CycleNumber = 0;
+    public bool DailyWorkDone = false;
 
     //Controllo day-scene per la gestione delle interazioni
     public void ChangeDayScene(DaySceneState newDaySceneState)
@@ -65,8 +66,8 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void DailyWorkDoneMethod() => DailyWorkDone = !DailyWorkDone;
     public DaySceneState GetDaySceneEnum() => DaySceneState;
-
     public int GetDayScene() => DayScene;
 }
 

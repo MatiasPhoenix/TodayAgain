@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorkSpaceManager : MonoBehaviour
 {
@@ -57,6 +59,17 @@ public class WorkSpaceManager : MonoBehaviour
     [SerializeField]
     private GameObject _badWorkMessage;
 
+    [SerializeField]
+    private Image _check1;
+
+    [SerializeField]
+    private Image _check2;
+
+    [SerializeField]
+    private Image _check3;
+    [SerializeField]
+    private GameObject _workFinishedMessage;
+
     private WorkSpaceState _currentState;
     private int _number1Value = 0;
     private int _number2Value = 0;
@@ -67,6 +80,7 @@ public class WorkSpaceManager : MonoBehaviour
     private int _numberObjective;
     private List<int> _listNumbers = new List<int> { 11, 5, 7, 9, 6, 12, 8, 15 };
     private bool _workComplete = false;
+    private int _tasksCompleted = 1;
 
     private void Start() => ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
 
@@ -75,6 +89,7 @@ public class WorkSpaceManager : MonoBehaviour
         switch (newWorkSpaceState)
         {
             case WorkSpaceState.NumberSet1:
+                WorkFinishedCheck();
                 SetObjectiveNumber();
                 _currentState = WorkSpaceState.NumberSet1;
                 _number1Value = 0;
@@ -83,6 +98,10 @@ public class WorkSpaceManager : MonoBehaviour
                 _number2Set = 0;
                 _number3Set = 0;
                 _finalNumberSet = 0;
+                _number1.text = "0";
+                _number2.text = "0";
+                _number3.text = "0";
+                _finalNumber.text = "0";
                 _currentSet1.color = Color.green;
                 break;
             case WorkSpaceState.NumberSet2:
@@ -105,6 +124,7 @@ public class WorkSpaceManager : MonoBehaviour
                 _finalNumberSet = _number1Set + _number2Set + _number3Set;
                 _finalNumber.text = _finalNumberSet.ToString();
                 WorkCompleteOrNot();
+                WorkFinishedCheck();
                 break;
 
             default:
@@ -317,7 +337,6 @@ public class WorkSpaceManager : MonoBehaviour
             _workComplete = false;
             StartCoroutine(WorkFinished());
             Debug.Log("Work Not Complete!");
-            ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
         }
     }
 
@@ -332,12 +351,65 @@ public class WorkSpaceManager : MonoBehaviour
     public IEnumerator WorkFinished()
     {
         if (_workComplete)
+        {
             _greatWorkMessage.SetActive(true);
+            if (_check1.color != Color.green && _check1.color != Color.red)
+                _check1.color = Color.green;
+            else if (_check2.color != Color.green && _check2.color != Color.red)
+                _check2.color = Color.green;
+            else if (_check3.color != Color.green && _check3.color != Color.red)
+                _check3.color = Color.green;
+        }
         else
+        {
             _badWorkMessage.SetActive(true);
-        yield return new WaitForSeconds(3f);
+            if (_check1.color != Color.green && _check1.color != Color.red)
+                _check1.color = Color.red;
+            else if (_check2.color != Color.green && _check2.color != Color.red)
+                _check2.color = Color.red;
+            else if (_check3.color != Color.green && _check3.color != Color.red)
+                _check3.color = Color.red;
+        }
+
+        yield return new WaitForSeconds(2f);
         _greatWorkMessage.SetActive(false);
         _badWorkMessage.SetActive(false);
+        if (_tasksCompleted <= 3)
+        {
+            Debug.Log($"Ricomincia {_tasksCompleted}/3");
+            ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+            if (_tasksCompleted == 3)
+            {
+                Debug.Log($"Finito {_tasksCompleted}/3");
+                GameManager.instance.DailyWorkDoneMethod();
+                WorkFinishedCheck();
+            }
+        }
+        _tasksCompleted++;
+    }
+
+    public void WorkFinishedCheck()
+    {
+        if (GameManager.instance.DailyWorkDone)
+        {
+            _workButton1.SetActive(false);
+            _workButton2.SetActive(false);
+            _workButton3.SetActive(false);
+            _workButtonPlus.SetActive(false);
+            _workButtonMinus.SetActive(false);
+            _passButton.SetActive(false);
+            _workFinishedMessage.SetActive(true);
+        }
+        else
+        {
+            _workButton1.SetActive(true);
+            _workButton2.SetActive(true);
+            _workButton3.SetActive(true);
+            _workButtonPlus.SetActive(true);
+            _workButtonMinus.SetActive(true);
+            _passButton.SetActive(true);
+            _workFinishedMessage.SetActive(false);
+        }
     }
 }
 

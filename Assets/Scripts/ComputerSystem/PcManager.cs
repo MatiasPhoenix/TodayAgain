@@ -25,36 +25,14 @@ public class PcManager : MonoBehaviour
     [SerializeField] private GameObject _playerObject;
 
     [Header("PC Components Cycle 00")]
-    [SerializeField] private GameObject _windowMyComputer;
+    [SerializeField] private GameObject _windowSystemWork;
+    [SerializeField] private GameObject _windowSecondaryTasks;
     [SerializeField] private GameObject _windowNetwork;
+    [SerializeField] private GameObject _windowsEmail;
     [SerializeField] private GameObject _windowReadme;
     [SerializeField] private GameObject _windowFolder;
     [SerializeField] private GameObject _windowsTerminal;
     [SerializeField] private GameObject _windowsStartButton;
-
-    // [Header("PC Components Cycle 01")]
-    // [SerializeField] private GameObject _windowMyComputer01;
-    // [SerializeField] private GameObject _windowNetwork01;
-    // [SerializeField] private GameObject _windowReadme01;
-    // [SerializeField] private GameObject _windowFolder01;
-    // [SerializeField] private GameObject _windowsTerminal01;
-    // [SerializeField] private GameObject _windowsStartButton01;
-
-    // [Header("PC Components Cycle 02")]
-    // [SerializeField] private GameObject _windowMyComputer02;
-    // [SerializeField] private GameObject _windowNetwork02;
-    // [SerializeField] private GameObject _windowReadme02;
-    // [SerializeField] private GameObject _windowFolder02;
-    // [SerializeField] private GameObject _windowsTerminal02;
-    // [SerializeField] private GameObject _windowsStartButton02;
-
-    // [Header("PC Components Cycle 03")]
-    // [SerializeField] private GameObject _windowMyComputer03;
-    // [SerializeField] private GameObject _windowNetwork03;
-    // [SerializeField] private GameObject _windowReadme03;
-    // [SerializeField] private GameObject _windowFolder03;
-    // [SerializeField] private GameObject _windowsTerminal03;
-    // [SerializeField] private GameObject _windowsStartButton03;
 
     public void GoToWorkOnPc()
     {
@@ -100,12 +78,18 @@ public class PcManager : MonoBehaviour
         switch (nameWindow)
         {
             case "SystemWork":
-                if (_windowMyComputer.activeSelf)
-                    _windowMyComputer.SetActive(false);
+                if (_windowSystemWork.activeSelf)
+                    _windowSystemWork.SetActive(false);
                 else
-                    _windowMyComputer.SetActive(true);
+                    _windowSystemWork.SetActive(true);
                 break;
             case "SecondaryTasks":
+                if (_windowSecondaryTasks.activeSelf)
+                    _windowSecondaryTasks.SetActive(false);
+                else
+                    _windowSecondaryTasks.SetActive(true);
+                break;
+            case "Network":
                 if (_windowNetwork.activeSelf)
                     _windowNetwork.SetActive(false);
                 else
@@ -134,6 +118,12 @@ public class PcManager : MonoBehaviour
                     _windowsStartButton.SetActive(false);
                 else
                     _windowsStartButton.SetActive(true);
+                break;
+            case "Email":
+                if (_windowsEmail.activeSelf)
+                    _windowsEmail.SetActive(false);
+                else
+                    _windowsEmail.SetActive(true);
                 break;
 
             default:
