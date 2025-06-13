@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WorkSpaceManager : MonoBehaviour
 {
+    public static WorkSpaceManager instance;
+
     [Header("Work Buttons")]
     [SerializeField]
     private GameObject _workButton1;
@@ -67,6 +68,7 @@ public class WorkSpaceManager : MonoBehaviour
 
     [SerializeField]
     private Image _check3;
+
     [SerializeField]
     private GameObject _workFinishedMessage;
 
@@ -82,7 +84,11 @@ public class WorkSpaceManager : MonoBehaviour
     private bool _workComplete = false;
     private int _tasksCompleted = 1;
 
-    private void Start() => ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+    private void Start()
+    {
+        ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+        instance = this;
+    }
 
     public void ChangeWorkSpaceState(WorkSpaceState newWorkSpaceState)
     {
@@ -344,7 +350,7 @@ public class WorkSpaceManager : MonoBehaviour
     {
         int randomNumber = _listNumbers[Random.Range(0, _listNumbers.Count)];
         _numberObjective = randomNumber;
-        Debug.Log($"Objective Number: {randomNumber}");
+        // Debug.Log($"Objective Number: {randomNumber}");
         _workRequest.text = _numberObjective.ToString();
     }
 
@@ -376,16 +382,19 @@ public class WorkSpaceManager : MonoBehaviour
         _badWorkMessage.SetActive(false);
         if (_tasksCompleted <= 3)
         {
-            Debug.Log($"Ricomincia {_tasksCompleted}/3");
+            // Debug.Log($"Ricomincia {_tasksCompleted}/3");
             ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
             if (_tasksCompleted == 3)
             {
-                Debug.Log($"Finito {_tasksCompleted}/3");
+                // Debug.Log($"Finito {_tasksCompleted}/3");
                 GameManager.instance.DailyWorkDoneMethod();
                 WorkFinishedCheck();
             }
         }
-        _tasksCompleted++;
+        if (GameManager.instance.DailyWorkDone == false)
+            _tasksCompleted++;
+
+        Debug.Log($"Contiamo {_tasksCompleted}/3");
     }
 
     public void WorkFinishedCheck()
@@ -399,6 +408,10 @@ public class WorkSpaceManager : MonoBehaviour
             _workButtonMinus.SetActive(false);
             _passButton.SetActive(false);
             _workFinishedMessage.SetActive(true);
+            _check1.color = Color.white;
+            _check2.color = Color.white;
+            _check3.color = Color.white;
+            _tasksCompleted = 1;
         }
         else
         {

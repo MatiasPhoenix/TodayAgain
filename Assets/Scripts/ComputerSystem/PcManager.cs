@@ -18,9 +18,13 @@ public class PcManager : MonoBehaviour
     [Header("PC Components")]
     [SerializeField] private GameObject _pcMasterObject;
     [SerializeField] private GameObject _pcObjectCycle00;
+    [SerializeField] private GameObject _pcDesktopCycle00;
     [SerializeField] private GameObject _pcObjectCycle01;
+    [SerializeField] private GameObject _pcDesktopCycle01;
     [SerializeField] private GameObject _pcObjectCycle02;
+    [SerializeField] private GameObject _pcDesktopCycle02;
     [SerializeField] private GameObject _pcObjectCycle03;
+    [SerializeField] private GameObject _pcDesktopCycle03;
     [SerializeField] private GameObject _cameraPcObject;
     [SerializeField] private GameObject _playerObject;
 
@@ -41,15 +45,19 @@ public class PcManager : MonoBehaviour
         {
             case 0:
                 _pcObjectCycle00.SetActive(true);
+                _pcDesktopCycle00.SetActive(true);
                 break;
             case 1:
                 _pcObjectCycle01.SetActive(true);
+                _pcDesktopCycle01.SetActive(true);
                 break;
             case 2:
                 _pcObjectCycle02.SetActive(true);
+                _pcDesktopCycle02.SetActive(true);
                 break;
             case 3:
                 _pcObjectCycle03.SetActive(true);
+                _pcDesktopCycle03.SetActive(true);
                 break;
             default:
                 break;
@@ -66,6 +74,10 @@ public class PcManager : MonoBehaviour
         _pcObjectCycle01.SetActive(false);
         _pcObjectCycle02.SetActive(false);
         _pcObjectCycle03.SetActive(false);
+        _pcDesktopCycle00.SetActive(false);
+        _pcDesktopCycle01.SetActive(false);
+        _pcDesktopCycle02.SetActive(false);
+        _pcDesktopCycle03.SetActive(false);
         _pcMasterObject.SetActive(false);
         _cameraPcObject.SetActive(false);
         _playerObject.SetActive(true);
