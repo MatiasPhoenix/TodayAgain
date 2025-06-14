@@ -4,10 +4,17 @@ using UnityEngine;
 public class InteractionScenario : MonoBehaviour
 {
     [Header("Interaction")]
-    [SerializeField] private GameObject _chairPcObject;
-    [SerializeField] private GameObject _pcMessage;
-    [SerializeField] private GameObject _mirrorObject;
-    [SerializeField] private GameObject _mirrorMessage;
+    [SerializeField]
+    private GameObject _chairPcObject;
+
+    [SerializeField]
+    private GameObject _pcMessage;
+
+    [SerializeField]
+    private GameObject _mirrorObject;
+
+    [SerializeField]
+    private GameObject _mirrorMessage;
 
     private float _timerCount = 0f;
 
@@ -56,8 +63,11 @@ public class InteractionScenario : MonoBehaviour
     {
         yield return new WaitForSeconds(_timerCount);
         if (_pcMessage.activeSelf)
+        {
             PcManager.instance.GoToWorkOnPc();
-            
+            GameManager.instance.CourutineBoxCollider();
+        }
+
         _mirrorMessage.SetActive(false);
         _pcMessage.SetActive(false);
     }

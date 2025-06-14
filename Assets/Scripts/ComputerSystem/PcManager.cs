@@ -70,6 +70,7 @@ public class PcManager : MonoBehaviour
 
     public void ExitFromPc()
     {
+        GameManager.instance.CourutineBoxCollider();
         _pcObjectCycle00.SetActive(false);
         _pcObjectCycle01.SetActive(false);
         _pcObjectCycle02.SetActive(false);

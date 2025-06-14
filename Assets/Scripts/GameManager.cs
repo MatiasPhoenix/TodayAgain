@@ -228,6 +228,18 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _workEndMessage.gameObject.SetActive(false);
     }
+
+    public IEnumerator ActiveTagPlayerForInteractions()
+    {
+        if (_playerObject.tag == "Player")
+            _playerObject.tag = "PlayerOff";
+        else
+        {
+            yield return new WaitForSeconds(5f);
+            _playerObject.tag = "Player";
+        }
+    }
+    public void CourutineBoxCollider() => StartCoroutine(ActiveTagPlayerForInteractions());
 }
 
 public enum DaySceneState
