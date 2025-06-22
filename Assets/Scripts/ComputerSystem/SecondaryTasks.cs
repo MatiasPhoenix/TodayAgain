@@ -11,7 +11,7 @@ public class SecondaryTasks : MonoBehaviour
 
     [SerializeField]
     private TMP_InputField _passwordInput;
-    private string _password = "asd";
+    private string _password = "asd123";
 
     [SerializeField]
     private GameObject _errorMessage;

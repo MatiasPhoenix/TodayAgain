@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,9 +26,6 @@ public class GameManager : MonoBehaviour
         ChangeDayScene(DaySceneState.day01);
     }
 
-    //Gestione dialoghi
-    public int DayScene = 0;
-
     [Header("UI Elements")]
     [SerializeField]
     private TextMeshProUGUI _daySceneUI;
@@ -51,13 +47,73 @@ public class GameManager : MonoBehaviour
     private GameObject _objectForRestartPosition;
     private Vector3 _playerPosition;
 
+    //----------------------------------------------------------------------
+
+    //Gestione dialoghi
+    public int DayScene = 0;
+
     //Gestione day-scene interno
     public DaySceneState DaySceneState;
     public int CycleNumber = 0;
     public bool DailyWorkDone = false;
 
-    //Controllo day-scene per la gestione delle interazioni
-    public void ChangeDayScene(DaySceneState newDaySceneState)
+    //----------------------------------------------------------------------
+
+
+    public IEnumerator NextDayScene() //Gestione del NextDayScene, avvia un nuovo giorno
+    {
+        float timeToWait = 5f;
+        switch (DayScene)
+        {
+            case 0:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day01);
+                break;
+            case 1:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day02);
+                break;
+            case 2:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day03);
+                break;
+            case 3:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day04);
+                break;
+            case 4:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day05);
+                break;
+            case 5:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day06);
+                break;
+            case 6:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(5f);
+                ChangeDayScene(DaySceneState.day01);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void ChangeDayScene(DaySceneState newDaySceneState) //Controllo day-scene, avvia le cose dell'inizio del giorno
     {
         DaySceneState = newDaySceneState;
         DailyWorkDone = false;
@@ -112,73 +168,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DailyWorkDoneMethod() => DailyWorkDone = !DailyWorkDone;
-
-    public DaySceneState GetDaySceneEnum() => DaySceneState;
-
-    public IEnumerator NextDayScene()
+    public int GetDayScene() => DayScene; //Get per sapere il giorno
+    public void ControlForNextDayScene()//Metodo utilizzato nei button delle scene per controllare s'è possibile passare al giorno successivo
     {
-        float timeToWait = 5f;
-        switch (DayScene)
-        {
-            case 0:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day01);
-                break;
-            case 1:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day02);
-                break;
-            case 2:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day03);
-                break;
-            case 3:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day04);
-                break;
-            case 4:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day05);
-                break;
-            case 5:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day06);
-                break;
-            case 6:
-                FadeIn();
-                StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(5f);
-                ChangeDayScene(DaySceneState.day01);
-                break;
-
-            default:
-                break;
-        }
+        if (DailyWorkDone)
+        StartCoroutine(NextDayScene());
     }
 
-    public int GetDayScene() => DayScene;
+    public DaySceneState GetDaySceneEnum() => DaySceneState; //Get per sapere il daySceneState
 
-    public void DayHelpMethod() => _daySceneUI.text = "DayScene: " + DayScene.ToString();
+    public void DailyWorkDoneMethod() => DailyWorkDone = !DailyWorkDone; //Aiuta con la gestione del Singleton in altri script
 
-    public void SafeRestartPlayerPosition()
-    {
-        StartCoroutine(WaitAndResetPosition());
-    }
+    public void DayHelpMethod() => //Gestisce testi DayScene e Cycle per i testi di debug
+        _daySceneUI.text =
+            "DayScene: " + DayScene.ToString() + " -  " + "Cycle: " + CycleNumber.ToString();
 
-    private IEnumerator WaitAndResetPosition()
+    public void SafeRestartPlayerPosition() => StartCoroutine(WaitAndResetPosition()); //Resetta posizione del player per il cambio dayScene
+
+    private IEnumerator WaitAndResetPosition() //Gestisce il reset della posizione del player con le tempistiche ed il CharaterController
     {
         CharacterController cc = _playerObject.GetComponent<CharacterController>();
         cc.enabled = false;
@@ -193,13 +200,7 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("Posizione player ripristinata (dopo delay)");
     }
 
-    public void ControlForNextDay()
-    {
-        if (DailyWorkDone == true)
-            StartCoroutine(NextDayScene());
-    }
-
-    //Gestione fade
+    //Inizio Gestione fade------------
     public void FadeIn() => StartCoroutine(Fade(0f, 1f));
 
     public void FadeOut() => StartCoroutine(Fade(1f, 0f));
@@ -222,14 +223,16 @@ public class GameManager : MonoBehaviour
         _blackOverlay.color = color;
     }
 
-    public IEnumerator MessageWorkFinished()
+    //Fine Gestione fade------------
+
+    public IEnumerator MessageWorkFinished() //Aiuta con la gestione del lavoro finito ed il passare al giorno successivo
     {
         _workEndMessage.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         _workEndMessage.gameObject.SetActive(false);
     }
 
-    public IEnumerator ActiveTagPlayerForInteractions()
+    public IEnumerator ActiveTagPlayerForInteractions() //Gestisce tag player per evitare problemi con le collisioni
     {
         if (_playerObject.tag == "Player")
             _playerObject.tag = "PlayerOff";
@@ -239,7 +242,8 @@ public class GameManager : MonoBehaviour
             _playerObject.tag = "Player";
         }
     }
-    public void CourutineBoxCollider() => StartCoroutine(ActiveTagPlayerForInteractions());
+
+    public void CourutineBoxCollider() => StartCoroutine(ActiveTagPlayerForInteractions()); //Attivazione del metodo(che è un IEnumerator)
 }
 
 public enum DaySceneState

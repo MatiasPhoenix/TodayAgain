@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PC
   - Mirror
+  - PlayerOff
   layers:
   - Default
   - TransparentFX

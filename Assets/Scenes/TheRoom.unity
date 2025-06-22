@@ -10946,7 +10946,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 886595173}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ControlForNextDay
+        m_MethodName: ControlForNextDayScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16033,13 +16033,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cff85c29a71fab4fa7175a7eff837ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DayScene: 0
   _daySceneUI: {fileID: 1196710612}
   _blackOverlay: {fileID: 1447587039}
   _workEndMessage: {fileID: 1681305333}
   _fadeDuration: 2.5
   _playerObject: {fileID: 862262908}
   _objectForRestartPosition: {fileID: 1923099159}
+  DayScene: 0
   DaySceneState: 0
   CycleNumber: 0
   DailyWorkDone: 0
@@ -22964,7 +22964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 968}
+  m_AnchoredPosition: {x: 809, y: 982}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1196710612
@@ -23014,8 +23014,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -23052,7 +23052,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -173.25287, y: -82.42828, z: -180.35046, w: 0}
+  m_margin: {x: -98.69928, y: -82.42828, z: -49.27124, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
