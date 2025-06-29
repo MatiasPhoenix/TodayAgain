@@ -424,6 +424,14 @@ public class WorkSpaceManager : MonoBehaviour
             _workFinishedMessage.SetActive(false);
         }
     }
+    public void CompleteWorkInstantButton()
+    {
+        if (GameManager.instance.DailyWorkDone)
+        {
+            GameManager.instance.DailyWorkDoneMethod();
+            WorkFinishedCheck();
+        }
+    }
 }
 
 public enum WorkSpaceState

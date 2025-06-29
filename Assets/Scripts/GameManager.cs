@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _workEndMessage;
 
     [SerializeField]
+    private TextMeshProUGUI _deadGameOverMessage;
+
+    [SerializeField]
     private float _fadeDuration = 2.5f;
 
     [Header("Cycles elements")]
@@ -104,8 +107,19 @@ public class GameManager : MonoBehaviour
             case 6:
                 FadeIn();
                 StartCoroutine(MessageWorkFinished());
-                yield return new WaitForSeconds(5f);
-                ChangeDayScene(DaySceneState.day01);
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day07);
+                break;
+            case 7:
+                FadeIn();
+                StartCoroutine(MessageWorkFinished());
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.day08);
+                break;
+            case 8:
+                FadeIn();
+                yield return new WaitForSeconds(timeToWait);
+                ChangeDayScene(DaySceneState.dead);
                 break;
 
             default:
@@ -120,6 +134,7 @@ public class GameManager : MonoBehaviour
         switch (newDaySceneState)
         {
             case DaySceneState.day01:
+                _deadGameOverMessage.gameObject.SetActive(false);
                 if (DayScene != 0)
                     SafeRestartPlayerPosition();
                 FadeOut();
@@ -127,39 +142,30 @@ public class GameManager : MonoBehaviour
                 DayHelpMethod();
                 break;
             case DaySceneState.day02:
-                SafeRestartPlayerPosition();
-                FadeOut();
-                DayScene = 2;
-                DayHelpMethod();
-                WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+                RestartDaySceneConfiguration();
                 break;
             case DaySceneState.day03:
-                SafeRestartPlayerPosition();
-                FadeOut();
-                DayScene = 3;
-                DayHelpMethod();
-                WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+                RestartDaySceneConfiguration();
                 break;
             case DaySceneState.day04:
-                SafeRestartPlayerPosition();
-                FadeOut();
-                DayScene = 4;
-                DayHelpMethod();
-                WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+                RestartDaySceneConfiguration();
                 break;
             case DaySceneState.day05:
-                SafeRestartPlayerPosition();
-                FadeOut();
-                DayScene = 5;
-                DayHelpMethod();
-                WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+                RestartDaySceneConfiguration();
                 break;
             case DaySceneState.day06:
-                SafeRestartPlayerPosition();
-                FadeOut();
-                DayScene = 6;
-                DayHelpMethod();
-                WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+                RestartDaySceneConfiguration();
+                break;
+            case DaySceneState.day07:
+                RestartDaySceneConfiguration();
+                break;
+            case DaySceneState.day08:
+                RestartDaySceneConfiguration();
+                break;
+            case DaySceneState.dead:
+                //GameOver for this cycle
+                Debug.LogWarning($"Game Over!");
+                _deadGameOverMessage.gameObject.SetActive(true);
                 break;
 
             default:
@@ -167,9 +173,18 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    void RestartDaySceneConfiguration()
+    {
+        SafeRestartPlayerPosition();
+        FadeOut();
+        DayScene++;
+        DayHelpMethod();
+        WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+    }
 
     public int GetDayScene() => DayScene; //Get per sapere il giorno
-    public void ControlForNextDayScene()//Metodo utilizzato nei button delle scene per controllare s'è possibile passare al giorno successivo
+
+    public void ControlForNextDayScene() //Metodo utilizzato nei button delle scene per controllare s'è possibile passare al giorno successivo
     {
         if (DailyWorkDone)
         StartCoroutine(NextDayScene());
@@ -254,4 +269,7 @@ public enum DaySceneState
     day04,
     day05,
     day06,
+    day07,
+    day08,
+    dead,
 }
