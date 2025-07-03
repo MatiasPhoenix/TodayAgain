@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,16 +10,19 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        LoadProgressParameters();
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
     }
 
-    void Start() //Start provvisorio per "debug" cicli
+    void Start() => //Start provvisorio per "debug" cicli
+        StartNewCycleOrNewGame();
+
+    public void StartNewCycleOrNewGame()
     {
         if (_blackOverlay.gameObject.activeSelf == false)
             _blackOverlay.gameObject.SetActive(true);
@@ -42,31 +46,37 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _fadeDuration = 2.5f;
 
+    [SerializeField]
+    private GameObject _restartButton;
+
     [Header("Cycles elements")]
     [SerializeField]
     private GameObject _playerObject;
 
     [SerializeField]
     private GameObject _objectForRestartPosition;
+
+    [Header("SO Progress Manager")]
+    [SerializeField]
+    private SOProgressManager _soProgressManager;
     private Vector3 _playerPosition;
 
     //----------------------------------------------------------------------
 
-    //Gestione dialoghi
-    public int DayScene = 0;
-
-    //Gestione day-scene interno
+    //Gestione awake-scene interno e dialoghi
     public DaySceneState DaySceneState;
-    public int CycleNumber = 0;
+    public int CycleNumber = 0,
+        AwakeNumberScene = 0,
+        PhaseManager = 0,
+        FinalUnlock = 0;
     public bool DailyWorkDone = false;
 
     //----------------------------------------------------------------------
 
-
     public IEnumerator NextDayScene() //Gestione del NextDayScene, avvia un nuovo giorno
     {
         float timeToWait = 5f;
-        switch (DayScene)
+        switch (AwakeNumberScene)
         {
             case 0:
                 FadeIn();
@@ -96,7 +106,10 @@ public class GameManager : MonoBehaviour
                 FadeIn();
                 StartCoroutine(MessageWorkFinished());
                 yield return new WaitForSeconds(timeToWait);
-                ChangeDayScene(DaySceneState.day05);
+                if (CycleNumber == 0)
+                    ChangeDayScene(DaySceneState.dead);
+                else
+                    ChangeDayScene(DaySceneState.day05);
                 break;
             case 5:
                 FadeIn();
@@ -135,10 +148,11 @@ public class GameManager : MonoBehaviour
         {
             case DaySceneState.day01:
                 _deadGameOverMessage.gameObject.SetActive(false);
-                if (DayScene != 0)
+                ScenarioProgressManager.instance.SeasonManager();
+                if (AwakeNumberScene != 0)
                     SafeRestartPlayerPosition();
                 FadeOut();
-                DayScene = 1;
+                AwakeNumberScene = 1;
                 DayHelpMethod();
                 break;
             case DaySceneState.day02:
@@ -166,6 +180,11 @@ public class GameManager : MonoBehaviour
                 //GameOver for this cycle
                 Debug.LogWarning($"Game Over!");
                 _deadGameOverMessage.gameObject.SetActive(true);
+                _restartButton.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                AwakeNumberScene = 0;
+                if (CycleNumber == 0)
+                    NewCycle();
                 break;
 
             default:
@@ -173,21 +192,23 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
     void RestartDaySceneConfiguration()
     {
         SafeRestartPlayerPosition();
         FadeOut();
-        DayScene++;
+        AwakeNumberScene++;
         DayHelpMethod();
         WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
+        ScenarioProgressManager.instance.SeasonManager();
     }
 
-    public int GetDayScene() => DayScene; //Get per sapere il giorno
+    public int GetDayScene() => AwakeNumberScene; //Get per sapere il giorno
 
     public void ControlForNextDayScene() //Metodo utilizzato nei button delle scene per controllare s'è possibile passare al giorno successivo
     {
         if (DailyWorkDone)
-        StartCoroutine(NextDayScene());
+            StartCoroutine(NextDayScene());
     }
 
     public DaySceneState GetDaySceneEnum() => DaySceneState; //Get per sapere il daySceneState
@@ -196,7 +217,14 @@ public class GameManager : MonoBehaviour
 
     public void DayHelpMethod() => //Gestisce testi DayScene e Cycle per i testi di debug
         _daySceneUI.text =
-            "DayScene: " + DayScene.ToString() + " -  " + "Cycle: " + CycleNumber.ToString();
+            "DayScene: "
+            + AwakeNumberScene.ToString()
+            + " -  "
+            + "Cycle: "
+            + CycleNumber.ToString()
+            + " - "
+            + "Phase: "
+            + PhaseManager.ToString();
 
     public void SafeRestartPlayerPosition() => StartCoroutine(WaitAndResetPosition()); //Resetta posizione del player per il cambio dayScene
 
@@ -212,7 +240,7 @@ public class GameManager : MonoBehaviour
         yield return null; // ancora un frame per sicurezza
         cc.enabled = true;
 
-        Debug.LogWarning("Posizione player ripristinata (dopo delay)");
+        // Debug.LogWarning("Posizione player ripristinata (dopo delay)");
     }
 
     //Inizio Gestione fade------------
@@ -259,6 +287,30 @@ public class GameManager : MonoBehaviour
     }
 
     public void CourutineBoxCollider() => StartCoroutine(ActiveTagPlayerForInteractions()); //Attivazione del metodo(che è un IEnumerator)
+
+    public void NewCycle() => CycleNumber++;
+
+    public void NewPhase() => PhaseManager++;
+
+    public void RestartGame()
+    {
+        _soProgressManager.SaveProgressParameters(
+            CycleNumber,
+            PhaseManager,
+            AwakeNumberScene,
+            FinalUnlock
+        );
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void LoadProgressParameters()
+    {
+        CycleNumber = _soProgressManager.CycleNumber;
+        PhaseManager = _soProgressManager.PhaseNumber;
+        AwakeNumberScene = _soProgressManager.AwakeNumber;
+        FinalUnlock = _soProgressManager.FinalUnlock;
+    }
+    public void ResetProgressParameters() => _soProgressManager.ResetAllParametersForDebugTest();
 }
 
 public enum DaySceneState

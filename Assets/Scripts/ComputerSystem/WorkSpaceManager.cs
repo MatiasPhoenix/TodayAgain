@@ -426,7 +426,7 @@ public class WorkSpaceManager : MonoBehaviour
     }
     public void CompleteWorkInstantButton()
     {
-        if (GameManager.instance.DailyWorkDone)
+        if (GameManager.instance.DailyWorkDone != true)
         {
             GameManager.instance.DailyWorkDoneMethod();
             WorkFinishedCheck();

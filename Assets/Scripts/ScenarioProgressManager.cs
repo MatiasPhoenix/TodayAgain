@@ -9,7 +9,6 @@ public class ScenarioProgressManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
@@ -100,26 +99,25 @@ public class ScenarioProgressManager : MonoBehaviour
 
         Debug.LogWarning($"Season: {_seasonNumberManager}");
     }
-    public void RoomManager(PhaseManager phase)
+
+    public void RoomAndCluesManager()
     {
-        switch (phase)
+        switch (GameManager.instance.PhaseManager)
         {
-            case PhaseManager.Phase01:
+            case 1:
                 _roomClueObjectPhase01.SetActive(true);
                 break;
-            case PhaseManager.Phase02:
+            case 2:
                 _roomClueObjectPhase02.SetActive(true);
                 break;
-            case PhaseManager.Phase03:
+            case 3:
                 _roomClueObjectPhase03.SetActive(true);
+                break;
+            default:
+                Debug.Log(
+                    $"Phase: {GameManager.instance.PhaseManager}, senza niente da poter attivare."
+                );
                 break;
         }
     }
-}
-
-enum PhaseManager
-{
-    Phase01,
-    Phase02,
-    Phase03
 }

@@ -1,20 +1,8 @@
 using UnityEngine;
 
-public class ProgressManager : MonoBehaviour
+[CreateAssetMenu(fileName = "SOProgressManager", menuName = "Data/SOProgressManager")]
+public class SOProgressManager : ScriptableObject
 {
-    public static ProgressManager instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-            Destroy(gameObject);
-    }
-
     //Gestione  progresso cycle, awake, phase, etc.
     public int CycleNumber = 0,
         PhaseNumber = 0,
@@ -40,5 +28,19 @@ public class ProgressManager : MonoBehaviour
         Debug.LogWarning(
             $"Cycle: {CycleNumber}, Phase: {PhaseNumber}, Awake: {AwakeNumber}, FinalUnlock: {FinalUnlock}"
         );
+    }
+
+    public void ResetAllParametersForDebugTest()
+    {
+        CycleNumber = 0;
+        PhaseNumber = 0;
+        AwakeNumber = 0;
+        FinalUnlock = 0;
+        EternalCycle = false;
+        NewPassNeed = false;
+        GameOutOfGame = false;
+        Fase1 = false;
+        Fase2 = false;
+        Fase3 = false;
     }
 }

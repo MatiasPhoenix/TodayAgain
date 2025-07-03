@@ -31,3 +31,18 @@ UserSettings/
 *.zip
 *.rar
 *.7z
+
+# Plugin o framework ScriptableObject (modifica path se serve)
+Assets/ThirdParty/
+Assets/Plugins/ScriptableObjectFramework/
+
+# ScriptableObject asset instances temporanei (facoltativo)
+# *.asset
+
+# Meta dei plugin ignorati
+Assets/ThirdParty/*.meta
+
+
+# Esclude tutto il pacchetto SO Architecture
+Assets/SO Architecture/
+Assets/SO Architecture/*.meta

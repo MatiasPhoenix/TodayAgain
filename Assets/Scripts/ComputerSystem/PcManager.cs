@@ -9,34 +9,75 @@ public class PcManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
             Destroy(gameObject);
     }
 
     [Header("PC Components")]
-    [SerializeField] private GameObject _pcMasterObject;
-    [SerializeField] private GameObject _pcObjectCycle00;
-    [SerializeField] private GameObject _pcDesktopCycle00;
-    [SerializeField] private GameObject _pcObjectCycle01;
-    [SerializeField] private GameObject _pcDesktopCycle01;
-    [SerializeField] private GameObject _pcObjectCycle02;
-    [SerializeField] private GameObject _pcDesktopCycle02;
-    [SerializeField] private GameObject _pcObjectCycle03;
-    [SerializeField] private GameObject _pcDesktopCycle03;
-    [SerializeField] private GameObject _cameraPcObject;
-    [SerializeField] private GameObject _playerObject;
+    [SerializeField]
+    private GameObject _pcMasterObject;
+
+    [SerializeField]
+    private GameObject _pcObjectCycle00;
+
+    [SerializeField]
+    private GameObject _pcDesktopCycle00;
+
+    [SerializeField]
+    private GameObject _pcObjectCycle01;
+
+    [SerializeField]
+    private GameObject _pcDesktopCycle01;
+
+    [SerializeField]
+    private GameObject _pcObjectCycle02;
+
+    [SerializeField]
+    private GameObject _pcDesktopCycle02;
+
+    [SerializeField]
+    private GameObject _pcObjectCycle03;
+
+    [SerializeField]
+    private GameObject _pcDesktopCycle03;
+
+    [SerializeField]
+    private GameObject _cameraPcObject;
+
+    [SerializeField]
+    private GameObject _playerObject;
 
     [Header("PC Components Cycle 00")]
-    [SerializeField] private GameObject _windowSystemWork;
-    [SerializeField] private GameObject _windowSecondaryTasks;
-    [SerializeField] private GameObject _windowNetwork;
-    [SerializeField] private GameObject _windowsEmail;
-    [SerializeField] private GameObject _windowReadme;
-    [SerializeField] private GameObject _windowFolder;
-    [SerializeField] private GameObject _windowsTerminal;
-    [SerializeField] private GameObject _windowsStartButton;
+    [SerializeField]
+    private GameObject _windowSystemWork;
+
+    [SerializeField]
+    private GameObject _windowSecondaryTasks;
+
+    [SerializeField]
+    private GameObject _windowNetwork;
+
+    [SerializeField]
+    private GameObject _windowsEmail;
+
+    [SerializeField]
+    private GameObject _windowHelpMe;
+
+    [SerializeField]
+    private GameObject _windowFolder;
+
+    [SerializeField]
+    private GameObject _windowsTerminal;
+
+    [SerializeField]
+    private GameObject _windowsMyComputer;
+
+    [SerializeField]
+    private GameObject _windowsRecycleBin;
+
+    [SerializeField]
+    private GameObject _windowsStartButton;
 
     public void GoToWorkOnPc()
     {
@@ -66,7 +107,6 @@ public class PcManager : MonoBehaviour
         _playerObject.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
     }
-        
 
     public void ExitFromPc()
     {
@@ -108,11 +148,11 @@ public class PcManager : MonoBehaviour
                 else
                     _windowNetwork.SetActive(true);
                 break;
-            case "Readme":
-                if (_windowReadme.activeSelf)
-                    _windowReadme.SetActive(false);
+            case "HelpMe":
+                if (_windowHelpMe.activeSelf)
+                    _windowHelpMe.SetActive(false);
                 else
-                    _windowReadme.SetActive(true);
+                    _windowHelpMe.SetActive(true);
                 break;
             case "Folder":
                 if (_windowFolder.activeSelf)
@@ -126,11 +166,23 @@ public class PcManager : MonoBehaviour
                 else
                     _windowsTerminal.SetActive(true);
                 break;
+            case "MyComputer":
+                if (_windowsMyComputer.activeSelf)
+                    _windowsMyComputer.SetActive(false);
+                else
+                    _windowsMyComputer.SetActive(true);
+                break;
             case "Start":
                 if (_windowsStartButton.activeSelf)
                     _windowsStartButton.SetActive(false);
                 else
                     _windowsStartButton.SetActive(true);
+                break;
+            case "RecycleBin":
+                if (_windowsRecycleBin.activeSelf)
+                    _windowsRecycleBin.SetActive(false);
+                else
+                    _windowsRecycleBin.SetActive(true);
                 break;
             case "Email":
                 if (_windowsEmail.activeSelf)
