@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6da6c817727fb4f9e363523381c29f, type: 3}
   m_Name: MyProgressManager
   m_EditorClassIdentifier: 
-  CycleNumber: 0
+  CycleNumber: 2
   PhaseNumber: 0
   AwakeNumber: 0
   FinalUnlock: 0
