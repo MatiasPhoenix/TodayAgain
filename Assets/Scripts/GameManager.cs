@@ -157,6 +157,8 @@ public class GameManager : MonoBehaviour
                 break;
             case DaySceneState.day02:
                 RestartDaySceneConfiguration();
+                if (_soProgressManager.EternalCycleCheck() == true)
+                    ScenarioProgressManager.instance.ActivationClueScenario(2);
                 break;
             case DaySceneState.day03:
                 RestartDaySceneConfiguration();
@@ -201,6 +203,12 @@ public class GameManager : MonoBehaviour
         DayHelpMethod();
         WorkSpaceManager.instance.ChangeWorkSpaceState(WorkSpaceState.NumberSet1);
         ScenarioProgressManager.instance.SeasonManager();
+        _soProgressManager.SaveProgressParameters(
+            CycleNumber,
+            PhaseManager,
+            AwakeNumberScene,
+            FinalUnlock
+        );
     }
 
     public int GetDayScene() => AwakeNumberScene; //Get per sapere il giorno
@@ -310,7 +318,10 @@ public class GameManager : MonoBehaviour
         AwakeNumberScene = _soProgressManager.AwakeNumber;
         FinalUnlock = _soProgressManager.FinalUnlock;
     }
+
     public void ResetProgressParameters() => _soProgressManager.ResetAllParametersForDebugTest();
+
+    //Metodi per l'attivazione di eventi in base al Cycle & Phase
 }
 
 public enum DaySceneState

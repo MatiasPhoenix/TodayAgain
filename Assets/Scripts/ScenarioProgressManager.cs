@@ -120,4 +120,23 @@ public class ScenarioProgressManager : MonoBehaviour
                 break;
         }
     }
+
+    public void ActivationClueScenario(int numberClue)
+    {
+        switch (numberClue)
+        {
+            case 1:
+                _roomClueObjectPhase01.SetActive(true);
+                break;
+            case 2:
+                _roomClueObjectPhase02.SetActive(true);
+                break;
+            case 3:
+                _roomClueObjectPhase03.SetActive(true);
+                break;
+            default:
+            Debug.LogWarning($"Nessun indizio da attivare.");
+                break;
+        }
+    }
 }

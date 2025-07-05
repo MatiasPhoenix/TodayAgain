@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CycleNumber: 2
   PhaseNumber: 0
-  AwakeNumber: 0
+  AwakeNumber: 2
   FinalUnlock: 0
-  EternalCycle: 0
+  EternalCycle: 1
   NewPassNeed: 0
   GameOutOfGame: 0
-  Fase1: 0
-  Fase2: 0
-  Fase3: 0
+  Phase1: 0
+  Phase2: 0
+  Phase3: 0

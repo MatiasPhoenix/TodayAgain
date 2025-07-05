@@ -11,7 +11,7 @@ public class SecondaryTasks : MonoBehaviour
 
     [SerializeField]
     private TMP_InputField _passwordInput;
-    private string _password = "asd123";
+    private string _password = "12abc";
 
     [SerializeField]
     private GameObject _errorMessage;
@@ -31,8 +31,18 @@ public class SecondaryTasks : MonoBehaviour
 
     [SerializeField]
     private Image _finalColor;
+
+    [SerializeField]
+    private TextMeshProUGUI _passColorSolutionOnScreen;
+
     private int _firstColor = 0;
     private int _secondColor = 0;
+
+    //Gestione dei colori per la configurazione delle password del secondary task
+    private Color _orangeColor = new Color32(255, 128, 0, 255);
+    private Color _violetColor = new Color32(128, 0, 128, 255);
+    private Color _greenColor = Color.green;
+    public string _passColorSolution = "";
 
     public void CheckPassword()
     {
@@ -130,5 +140,58 @@ public class SecondaryTasks : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void ChooseColorForPassword()
+    {
+        if (_passColorSolution.Length < 4)
+        {
+            if (_finalColor.color == _orangeColor)
+                _passColorSolution += "1";
+            else if (_finalColor.color == _violetColor)
+                _passColorSolution += "2";
+            else if (_finalColor.color == _greenColor)
+                _passColorSolution += "3";
+            else if (_finalColor.color == Color.red)
+                _passColorSolution += "4";
+            else if (_finalColor.color == Color.yellow)
+                _passColorSolution += "5";
+            else if (_finalColor.color == Color.blue)
+                _passColorSolution += "6";
+            else if (_finalColor.color == Color.white)
+            {
+                ResetPassword();
+                VisiblePasswordOnScreenReset();
+                return;
+            }
+
+            VisiblePasswordOnScreen();
+            Debug.LogWarning($"La password è: {_passColorSolution}");
+        }
+        else
+            Debug.LogWarning($"Password esaurita");
+    }
+
+    public void PasswordColorVerification()
+    {
+        ResetPassword();
+        VisiblePasswordOnScreenReset();
+    }
+
+    public void ResetPassword() => _passColorSolution = "";
+
+    public void VisiblePasswordOnScreen() => _passColorSolutionOnScreen.text += "*";
+
+    public void VisiblePasswordOnScreenReset() => _passColorSolutionOnScreen.text = "--";
+
+    public void CancelLastNumber()
+    {
+        _passColorSolution = _passColorSolution.Remove(_passColorSolution.Length - 1, 1);
+
+        _passColorSolutionOnScreen.text = _passColorSolutionOnScreen.text.Remove(
+            _passColorSolutionOnScreen.text.Length - 1,
+            1
+        );
+        PasswordColorVerification();
     }
 }
