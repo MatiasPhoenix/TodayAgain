@@ -154,11 +154,11 @@ public class GameManager : MonoBehaviour
                 FadeOut();
                 AwakeNumberScene = 1;
                 DayHelpMethod();
+                if (_soProgressManager.EternalCycleCheck() == true)
+                    ScenarioProgressManager.instance.RoomAndCluesManager();
                 break;
             case DaySceneState.day02:
                 RestartDaySceneConfiguration();
-                if (_soProgressManager.EternalCycleCheck() == true)
-                    ScenarioProgressManager.instance.ActivationClueScenario(2);
                 break;
             case DaySceneState.day03:
                 RestartDaySceneConfiguration();
@@ -186,7 +186,11 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 AwakeNumberScene = 0;
                 if (CycleNumber == 0)
+                {
                     NewCycle();
+                    _soProgressManager.Phase1True();
+                    _soProgressManager.EternalCycleTrue();
+                }
                 break;
 
             default:
@@ -209,6 +213,8 @@ public class GameManager : MonoBehaviour
             AwakeNumberScene,
             FinalUnlock
         );
+        if (_soProgressManager.EternalCycleCheck() == true)
+            ScenarioProgressManager.instance.RoomAndCluesManager();
     }
 
     public int GetDayScene() => AwakeNumberScene; //Get per sapere il giorno

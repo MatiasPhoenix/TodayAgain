@@ -45,10 +45,40 @@ public class ScenarioProgressManager : MonoBehaviour
     private GameObject _roomClueObjectPhase01;
 
     [SerializeField]
+    private GameObject _roomClueObjectPhase01_A; //Piatti, bicchiere, bottiglia
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase01_B; //Postit, biglietti da visita(num. binari)
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase01_C; //Rivista e fogli sulla scrivania
+
+    [SerializeField]
+    private GameObject _instantFinishWorkButton; //Pulsante per finire il lavoro istantaneamente
+
+    [SerializeField]
     private GameObject _roomClueObjectPhase02;
 
     [SerializeField]
+    private GameObject _roomClueObjectPhase02_A;
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase02_B;
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase02_C;
+
+    [SerializeField]
     private GameObject _roomClueObjectPhase03;
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase03_A;
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase03_B;
+
+    [SerializeField]
+    private GameObject _roomClueObjectPhase03_C;
 
     // [Header("Bathroom")]
     // [SerializeField] private GameObject _bathroomObject;
@@ -57,6 +87,7 @@ public class ScenarioProgressManager : MonoBehaviour
     // [SerializeField] private GameObject _bathroomClueObject3;
 
     private int _seasonNumberManager = 1;
+    private SOProgressManager _soProgressManager;
 
     public void SetSeasonNumber() => _seasonNumberManager++;
 
@@ -102,6 +133,7 @@ public class ScenarioProgressManager : MonoBehaviour
 
     public void RoomAndCluesManager()
     {
+        ProgressCluesManager();
         switch (GameManager.instance.PhaseManager)
         {
             case 1:
@@ -121,22 +153,25 @@ public class ScenarioProgressManager : MonoBehaviour
         }
     }
 
-    public void ActivationClueScenario(int numberClue)
+    public void ProgressCluesManager()
     {
-        switch (numberClue)
+        if ( //Verifiche per attivare gli indizi della Phase 1
+            _soProgressManager.Phase1Check() == true
+            && _roomClueObjectPhase01.activeSelf
+            && _soProgressManager.NewPassNeedCheck() == true
+        )
         {
-            case 1:
-                _roomClueObjectPhase01.SetActive(true);
-                break;
-            case 2:
-                _roomClueObjectPhase02.SetActive(true);
-                break;
-            case 3:
-                _roomClueObjectPhase03.SetActive(true);
-                break;
-            default:
-            Debug.LogWarning($"Nessun indizio da attivare.");
-                break;
+            _roomClueObjectPhase01_A.SetActive(true);
+            if (
+                _soProgressManager.GameOutOfGameCheck() == true
+                && GameManager.instance.AwakeNumberScene >= 2
+            )
+            {
+                _roomClueObjectPhase01_B.SetActive(true);
+                _instantFinishWorkButton.SetActive(true);
+            }
+            if (GameManager.instance.AwakeNumberScene >= 4)
+                _roomClueObjectPhase01_C.SetActive(true);
         }
     }
 }
