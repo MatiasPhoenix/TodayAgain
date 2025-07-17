@@ -86,8 +86,8 @@ public class ScenarioProgressManager : MonoBehaviour
     // [SerializeField] private GameObject _bathroomClueObject2;
     // [SerializeField] private GameObject _bathroomClueObject3;
 
-    private int _seasonNumberManager = 1;
-    private SOProgressManager _soProgressManager;
+    private int _seasonNumberManager = 0;
+    public SOProgressManager _soProgressManager;
 
     public void SetSeasonNumber() => _seasonNumberManager++;
 
@@ -155,6 +155,7 @@ public class ScenarioProgressManager : MonoBehaviour
 
     public void ProgressCluesManager()
     {
+        Debug.LogWarning($"---Verificando attivazione indizi---");
         if ( //Verifiche per attivare gli indizi della Phase 1
             _soProgressManager.Phase1Check() == true
             && _roomClueObjectPhase01.activeSelf
@@ -164,14 +165,14 @@ public class ScenarioProgressManager : MonoBehaviour
             _roomClueObjectPhase01_A.SetActive(true);
             if (
                 _soProgressManager.GameOutOfGameCheck() == true
-                && GameManager.instance.AwakeNumberScene >= 2
+                && _soProgressManager.AwakeNumber >= 2
             )
             {
                 _roomClueObjectPhase01_B.SetActive(true);
                 _instantFinishWorkButton.SetActive(true);
             }
-            if (GameManager.instance.AwakeNumberScene >= 4)
-                _roomClueObjectPhase01_C.SetActive(true);
         }
+        if (_soProgressManager.AwakeNumber >= 4)
+            _roomClueObjectPhase01_C.SetActive(true);
     }
 }

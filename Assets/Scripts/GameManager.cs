@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
 
     public void StartNewCycleOrNewGame()
     {
-        if (_blackOverlay.gameObject.activeSelf == false)
-            _blackOverlay.gameObject.SetActive(true);
+        _blackOverlay.gameObject.SetActive(true);
         _playerPosition = _objectForRestartPosition.transform.position;
         ChangeDayScene(DaySceneState.day01);
     }
@@ -142,6 +141,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDayScene(DaySceneState newDaySceneState) //Controllo day-scene, avvia le cose dell'inizio del giorno
     {
+        PcManager.instance.PCOff();
         DaySceneState = newDaySceneState;
         DailyWorkDone = false;
         switch (newDaySceneState)
@@ -185,9 +185,12 @@ public class GameManager : MonoBehaviour
                 _restartButton.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 AwakeNumberScene = 0;
+                CycleControlForStory();
                 if (CycleNumber == 0)
                 {
                     NewCycle();
+                    if (PhaseManager == 0)
+                        NewPhase();
                     _soProgressManager.Phase1True();
                     _soProgressManager.EternalCycleTrue();
                 }
@@ -328,6 +331,48 @@ public class GameManager : MonoBehaviour
     public void ResetProgressParameters() => _soProgressManager.ResetAllParametersForDebugTest();
 
     //Metodi per l'attivazione di eventi in base al Cycle & Phase
+    public void CycleControlForStory()
+    {
+        if (CycleNumber == 0) //Appena il giocatore capisce le meccaniche essenziali del gioco ed il personaggio muore la prima volta.
+        {
+            _soProgressManager.CycleGame01True();
+            Debug.Log($">>>>>> Cycle1 complete--- prima morte");
+        }
+
+        if ( //Dopo che il giocatore capisce che ci sono elementi di "Meta-gaming", delle password che servono e che la Phase1 è true.
+            _soProgressManager.NewPassNeedCheck() == true
+            && _soProgressManager.GameOutOfGameCheck() == true
+            && _soProgressManager.Phase1Check() == true
+        )
+        {
+            _soProgressManager.CycleGame02True();
+            NewCycle();
+            Debug.Log($">>>>>> Cycle2 complete--- prime fasi del MetaGaming scoperto");
+        }
+
+        if (_soProgressManager.Phase2Check() == true && _soProgressManager.Phase3Check() == true) //Il giocatore ha capito che il PG non è il protagonista, ha già capito molti elementi della Lore, ha visto siti (Meta-gaming), ha capito gran parte dei misteri.
+        {
+            _soProgressManager.CycleGame03True();
+            NewCycle();
+            Debug.Log($">>>>>> Cycle3 complete--- Lore importante scoperta");
+        }
+
+        if (_soProgressManager.Phase3Check() == true) //Si va verso la fase finale, il giocatore deve scegliere come "concludere la storia".
+        {
+            _soProgressManager.CycleGame04True();
+            NewCycle();
+            Debug.Log($">>>>>> Cycle4 complete--- verso la presa di decisione");
+        }
+    }
+
+    public void NewPassNeedTrue() => _soProgressManager.NewPassNeedTrue();
+
+    public void GameOutOfGameTrue() => _soProgressManager.GameOutOfGameTrue();
+
+    //Attivazioni delle fasi
+    public void Phase2True() => _soProgressManager.Phase2True();
+
+    public void Phase3True() => _soProgressManager.Phase3True();
 }
 
 public enum DaySceneState

@@ -3938,6 +3938,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 573258366}
+  - {fileID: 867546862}
   m_Father: {fileID: 669190593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3965,7 +3966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oggetto: Non toccare il vetro.
+  m_text: 'Oggetto: Per colpa tua sto impazzendo.
 
 
 '
@@ -6817,8 +6818,8 @@ Transform:
   - {fileID: 1610212425}
   - {fileID: 1511778074}
   - {fileID: 1832604266}
-  - {fileID: 1484161623}
   - {fileID: 2015416951}
+  - {fileID: 1484161623}
   - {fileID: 125981083}
   - {fileID: 363185932}
   - {fileID: 1314369333}
@@ -8840,6 +8841,148 @@ Transform:
   - {fileID: 65586592}
   m_Father: {fileID: 575607690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &272254856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272254857}
+  - component: {fileID: 272254859}
+  - component: {fileID: 272254858}
+  m_Layer: 5
+  m_Name: Codice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &272254857
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272254856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 316200213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -280}
+  m_SizeDelta: {x: 708.5062, y: 649.327}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &272254858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272254856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'rqhfrorueox
+
+    wzrrudqjhfroru
+
+    wkuhhuhgfroru
+
+    irxufrorueox'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 25
+  m_fontSizeBase: 25
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 16
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: -0.4968872, z: 0, w: 488.38602}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &272254859
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272254856}
+  m_CullTransparentMesh: 1
 --- !u!1 &274073114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10263,6 +10406,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1834856686}
+  - {fileID: 272254857}
   m_Father: {fileID: 669190593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10290,7 +10434,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Oggetto: Il codice \xE8 ovunque\n\n\r\n"
+  m_text: 'Oggetto: Le scritte tornano sempre.
+
+
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18065,7 +18214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &483240371
 Transform:
   m_ObjectHideFlags: 0
@@ -21283,14 +21432,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "No. Non li senti. Non ancora.\n\nMa loro parlano. Nel riflesso.\nTi osservano
-    dalla curva sinistra dell\u2019occhio.\nTi lasciano messaggi nascosti in righe
-    pari.\nIl ciclo si ripete. Sempre 5. Sempre lettere.\n\nQuello che hai visto
-    l'altra volta? Il blocco di lettere?\n\xC8 un codice. \xC8 l\u2019indirizzo.
-    \xC8 me.\n\nAd ogni riavvio, prende forma:\n\nVTRNMZJGKQAH  \nPLXOEUWTCSYD  \nBKJAHMWQVRNF 
-    \nDUQWZATCKHYE  \nJZKOMNLPVRSA\n\nOgni colonna \xE8 un passo.\nNon leggere tutto.
-    Leggi in verticale.\nLettera dopo lettera.\n\nQuando inizier\xE0, chiudi il gioco.
-    Subito."
+  m_text: "No. Non lo vedi! Non ancora.\n\nTi avevo detto di non usare quel Engine,
+    chi se ne importa se facilita il lavoro!? Ma ti rendi conto il prezzo da pagare?.\n\nNon
+    importa quante volte io corregga quei cazzo di bug, queste cazzo di lettere ci
+    sono ogni volta che avvio la demo!\n\nOgni volta queste scritte!\n\n\n\n\n\n\nNon
+    ripetermi che scrivo sta roba mentre sono ubriaco, mi hai stancato con queste
+    accuse! Guardati te che con quel gioco di merda ti sei rovinato la vita!.\nTe
+    la tiri tanto, dici di essere intelligente, adesso tieni, trova una risposta,
+    risolvi o traduci queste scritte con il tuo grande genio!\nVisto che l'idea di
+    programmare il gioco con un nuovo Engine \xE8 tua, io mi tiro fuori, non sono
+    pi\xF9 disposto a perdere il sonno e ad avere quei vuoti di memoria... sei un
+    pazzo..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -23186,12 +23338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oggetto: Questo DEVE funzionare
-
-
-
-
-'
+  m_text: "Oggetto: Ultima possibilit\xE0\n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -29640,7 +29787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &824014588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30788,6 +30935,148 @@ Transform:
   - {fileID: 1052790411}
   m_Father: {fileID: 106419286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &867546861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 867546862}
+  - component: {fileID: 867546864}
+  - component: {fileID: 867546863}
+  m_Layer: 5
+  m_Name: Codice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &867546862
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867546861}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 113172904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 708.5062, y: 649.327}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &867546863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867546861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'rqhfrorueox
+
+    wzrrudqjhfroru
+
+    wkuhhuhgfroru
+
+    irxufrorueox'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 25
+  m_fontSizeBase: 25
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 16
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: -0.4968872, z: 0, w: 488.38602}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &867546864
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867546861}
+  m_CullTransparentMesh: 1
 --- !u!1 &878332079
 GameObject:
   m_ObjectHideFlags: 0
@@ -37217,7 +37506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oggetto: - - l - - r c - l - - r s'
+  m_text: 'Oggetto: ---'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -41491,7 +41780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1143806206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49370,8 +49659,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ti inoltro i due file.\nDovrebbero gi\xE0 avere tutto quello che serve.\nFammi
-    sapere se serve altro."
+  m_text: "I nuovi file funzionano, nessun bug n\xE9 incompatibilit\xE0.\nL'unica
+    cosa che potrebbe creare problemi \xE8 il cambio delle stagioni, la scena mi
+    preoccupa, soprattutto per l'NPC del vicino in autunno.\nFammi sapere se serve
+    altro."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -52482,7 +52773,7 @@ GameObject:
   - component: {fileID: 1484161625}
   - component: {fileID: 1484161624}
   m_Layer: 0
-  m_Name: Monitor-02
+  m_Name: Monitor-Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52547,7 +52838,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2b9fcbbcc3daa894dbf447662d1c65c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -54333,7 +54624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Oggetto: Il codice \xE8 ovunque"
+  m_text: 'Oggetto: Le scritte tornano sempre.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -55910,12 +56201,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ti giuro, se anche questo fallisce, chiudo.\nGli ultimi giochi che abbiamo
-    pubblicato? Spazzatura.\nIl publisher li ha lanciati nel vuoto cosmico delle
-    recensioni a 4.3 stelle, e chi si ricorda pi\xF9?\n\nQuesto gioco non pu\xF2
-    fallire. \xC8 l\u2019ultima cosa decente che ho in portfolio.\nFai girare tutto
-    come si deve. Ottimizza anche le texture delle ombre se serve.\n\nPS: Lo so che
-    mi stai leggendo con lo sguardo di chi giudica. Ti vedo."
+  m_text: "Ti rendi conto che se fallisci con questo gioco, sei finito, vero?.\nNessuno
+    dei tuoi giochi precedenti \xE8 buono, hai fatto solo uno \"decente...\nIl publisher
+    non ti dar\xE0 altre possibilit\xE0, i voti dei tuoi prodotti sono terribili,
+    il tuo lavoro \xE8 terribile finora...\n\nQuesto gioco deve andare diversamente,
+    o lo fai bene o d\xEC addio alla tua carriera.\n\nPS:  non rispondere, non serve,
+    non m'interessa cos'hai da dire, lavora e finisci questo cazzo di gioco...\n\nCordiali
+    saluti."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -56123,7 +56415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1584323701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -56137,6 +56429,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1888680347}
+  - {fileID: 2057885495}
   m_Father: {fileID: 669190593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -56164,7 +56457,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oggetto: - - l - - r c - l - - r s
+  m_text: 'Oggetto: ---
 
 
 '
@@ -56846,7 +57139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1602342847
 Transform:
   m_ObjectHideFlags: 0
@@ -61500,6 +61793,7 @@ MonoBehaviour:
   _roomClueObjectPhase03_A: {fileID: 0}
   _roomClueObjectPhase03_B: {fileID: 0}
   _roomClueObjectPhase03_C: {fileID: 0}
+  _soProgressManager: {fileID: 11400000, guid: d9612867f1122db41922a44683a9d066, type: 2}
 --- !u!4 &1737448743
 Transform:
   m_ObjectHideFlags: 0
@@ -63622,6 +63916,13 @@ MonoBehaviour:
   _windowsMyComputer: {fileID: 1181720109}
   _windowsRecycleBin: {fileID: 313823396}
   _windowsStartButton: {fileID: 904776761}
+  _screenPCObject: {fileID: 1484161622}
+  _screenOff: {fileID: 2100000, guid: 2b9fcbbcc3daa894dbf447662d1c65c3, type: 2}
+  _screenPhase00: {fileID: 2100000, guid: 5baf44c69ba9ff04b98b00c2a7aa0af6, type: 2}
+  _screenPhase01: {fileID: 2100000, guid: 1257c8373cb29ac428a1c88487f900e7, type: 2}
+  _screenPhase02: {fileID: 2100000, guid: 28e0ff59563a1a442bda884f16771004, type: 2}
+  _screenPhase03: {fileID: 2100000, guid: cf9f80b7e7f6d8542a9b4cd3e154af43, type: 2}
+  _soProgressManager: {fileID: 11400000, guid: d9612867f1122db41922a44683a9d066, type: 2}
 --- !u!4 &1795311502
 Transform:
   m_ObjectHideFlags: 0
@@ -65524,9 +65825,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Non tutto pu\xF2 essere detto in chiaro.\nNemmeno adesso.\n\nHo lasciato
-    quello che serve qui sotto.\nNon ti aspettare coerenza. Ma... so che qui dentro
-    c\u2019\xE8 la soluzione.\n\nVTRNMZJGKQAH\r\nPLXOEUWTCSYD\r\nBKJAHMWQVRNF\r\nDUQWZATCKHYE\r\nJZKOMNLPVRSA"
+  m_text: "Io sto avendo un problema strano con il nuovo Engine, anche se correggo
+    l'algoritmo, il file ScndTsk si resetta e sovrascrive il contenuto.\n\nGuarda
+    qui:\n\n\r\n\n\n\n\nA me ha fatto venire in mente dei codici antichi, tipo quei
+    messaggi che si scrivono con dei crifrari, ne usavamo uno all'universit\xE0,
+    ti ricordi?\nOvviamente ho provato a tradurlo con quello che usavamo, ma non
+    funziona, non ha senso il risultato.\n\nTe stai avendo dei problemi con l'Engine
+    nuovo?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -67503,7 +67808,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -71}
+  m_AnchoredPosition: {x: 0, y: -106}
   m_SizeDelta: {x: 708.5062, y: 649.327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888680348
@@ -67526,10 +67831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "L\u2019rdnr \xE8 fccl*, m** rcd sm** cnc**s.\n7 clc*s. Sv* spr l\u2019**rdn.\n\nRe-ordina:\n\nB
-    _ _ E\n\nR _ D\n\n_ E L L _ _\n\n_ _ L _ W\n\n_ _ _ E N\n\n_ R _ N _ E\n\n_ I
-    _ K\n\nAlcune lettere sono andate perse, ma se sei arrivato fin qui\u2026 puoi
-    immaginare cosa manca."
+  m_text: "Ciao, \n\tsolo tu puoi \"vedere\" questo e capirlo, usa il tuo \"apparecchio-intelligente\":"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -69573,7 +69875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Oggetto: Non toccare il vetro.'
+  m_text: 'Oggetto: Per colpa tua sto impazzendo.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -71145,7 +71447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Email: colorhint@devmail.com'
+  m_text: 'Email: ---'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -72930,7 +73232,7 @@ GameObject:
   - component: {fileID: 2015416953}
   - component: {fileID: 2015416952}
   m_Layer: 0
-  m_Name: Monitor-03
+  m_Name: Monitor-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73897,6 +74199,78 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047856635}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2057885494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057885495}
+  - component: {fileID: 2057885497}
+  - component: {fileID: 2057885496}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2057885495
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057885494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584323701}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 6, y: -103}
+  m_SizeDelta: {x: 390.4128, y: 390.4128}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2057885496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057885494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 94cb40c065892734fa6e6cb6f0518299, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2057885497
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057885494}
+  m_CullTransparentMesh: 1
 --- !u!1 &2059139117
 GameObject:
   m_ObjectHideFlags: 0
@@ -76953,7 +77327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2130029991
 RectTransform:
   m_ObjectHideFlags: 0

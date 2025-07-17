@@ -79,10 +79,34 @@ public class PcManager : MonoBehaviour
     [SerializeField]
     private GameObject _windowsStartButton;
 
+    [Header("PC Screen on RoomVisual")]
+    [SerializeField]
+    private GameObject _screenPCObject;
+
+    [SerializeField]
+    private Material _screenOff;
+
+    [SerializeField]
+    private Material _screenPhase00;
+
+    [SerializeField]
+    private Material _screenPhase01;
+
+    [SerializeField]
+    private Material _screenPhase02;
+
+    [SerializeField]
+    private Material _screenPhase03;
+
+
+    public SOProgressManager _soProgressManager;
+    private bool _isPcOn = false;
+
     public void GoToWorkOnPc()
     {
+        PCOff();
         _pcMasterObject.SetActive(true);
-        switch (GameManager.instance.CycleNumber)
+        switch (_soProgressManager.CycleNumber)
         {
             case 0:
                 _pcObjectCycle00.SetActive(true);
@@ -124,6 +148,7 @@ public class PcManager : MonoBehaviour
         _playerObject.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         ClickToOpenAndCloseWindow("Start");
+        PCScreenController();
     }
 
     public void ClickToOpenAndCloseWindow(string nameWindow)
@@ -195,5 +220,33 @@ public class PcManager : MonoBehaviour
                 Debug.LogWarning($"There is no window with the name {nameWindow}");
                 break;
         }
+    }
+
+    public void PCScreenController()
+    {
+        if (_isPcOn == false)
+            _isPcOn = true;
+        switch (_soProgressManager.CycleNumber)
+        {
+            case 0:
+                _screenPCObject.GetComponent<MeshRenderer>().material = _screenPhase00;
+                break;
+            case 1:
+                _screenPCObject.GetComponent<MeshRenderer>().material = _screenPhase01;
+                break;
+            case 2:
+                _screenPCObject.GetComponent<MeshRenderer>().material = _screenPhase02;
+                break;
+            case 3:
+                _screenPCObject.GetComponent<MeshRenderer>().material = _screenPhase03;
+                break;
+            default:
+                break;
+        }
+    }
+    public void PCOff()
+    {
+        _isPcOn = false;
+        _screenPCObject.GetComponent<MeshRenderer>().material = _screenOff;
     }
 }

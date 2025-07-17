@@ -17,6 +17,12 @@ public class SOProgressManager : ScriptableObject
         Phase2 = false,
         Phase3 = false;
 
+    //Gestione dei cicli della storia per la gestione dei progressi
+    public bool CycleGame01 = false,
+        CycleGame02 = false,
+        CycleGame03 = false,
+        CycleGame04 = false;
+
     public void SaveProgressParameters(int cycle, int phase, int awake, int finalUnlock) //Salva tutti i parametri con il progredire del gioco, usando come riferimento il GameManager
     {
         CycleNumber = cycle;
@@ -52,6 +58,23 @@ public class SOProgressManager : ScriptableObject
     public bool Phase2Check() => Phase2;
 
     public bool Phase3Check() => Phase3;
+
+    //Metodi per i cicli della storia--------------------------
+    public void CycleGame01True() => CycleGame01 = true;
+
+    public bool CycleGame01Check() => CycleGame01;
+
+    public void CycleGame02True() => CycleGame02 = true;
+
+    public bool CycleGame02Check() => CycleGame02;
+
+    public void CycleGame03True() => CycleGame03 = true;
+
+    public bool CycleGame03Check() => CycleGame03;
+
+    public void CycleGame04True() => CycleGame04 = true;
+
+    public bool CycleGame04Check() => CycleGame04;
 
     //-------------------------------------------------------------------------
 
