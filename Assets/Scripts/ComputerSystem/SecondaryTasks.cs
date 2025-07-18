@@ -38,11 +38,18 @@ public class SecondaryTasks : MonoBehaviour
     private int _firstColor = 0;
     private int _secondColor = 0;
 
+    public SOProgressManager _soProgressManager;
+
     //Gestione dei colori per la configurazione delle password del secondary task
     private Color _orangeColor = new Color32(255, 128, 0, 255);
     private Color _violetColor = new Color32(128, 0, 128, 255);
     private Color _greenColor = Color.green;
     public string _passColorSolution = "";
+
+    //Gestione di elementi sbloccati con il progresso del gioco
+    [Header("Unlockable items")]
+    [SerializeField]
+    private GameObject[] _unlockableItemsCycle1Emails; //Ciclo1 dopo primo puzzle dei colori
 
     public void CheckPassword()
     {
@@ -120,21 +127,22 @@ public class SecondaryTasks : MonoBehaviour
 
     public IEnumerator ShowAnswer(int numberAnswer)
     {
+        float elapsedTime = 2f;
         switch (numberAnswer)
         {
             case 1:
                 _goodAnswer.SetActive(true);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(elapsedTime);
                 _goodAnswer.SetActive(false);
                 break;
             case 2:
                 _badAnswer.SetActive(true);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(elapsedTime);
                 _badAnswer.SetActive(false);
                 break;
             case 3:
                 _missColorAnswer.SetActive(true);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(elapsedTime);
                 _missColorAnswer.SetActive(false);
                 break;
             default:
@@ -166,6 +174,12 @@ public class SecondaryTasks : MonoBehaviour
             }
 
             VisiblePasswordOnScreen();
+            if (
+                _firstColor != 0 && _secondColor != 0
+                || _firstColor != 0 && _secondColor == 0
+                || _firstColor == 0 && _secondColor != 0
+            )
+                AddColor(4);
             Debug.LogWarning($"La password è: {_passColorSolution}");
         }
         else
@@ -174,15 +188,14 @@ public class SecondaryTasks : MonoBehaviour
 
     public void PasswordColorVerification()
     {
-        ResetPassword();
-        VisiblePasswordOnScreenReset();
+        ActivationPuzzleCheck();
     }
 
     public void ResetPassword() => _passColorSolution = "";
 
     public void VisiblePasswordOnScreen() => _passColorSolutionOnScreen.text += "*";
 
-    public void VisiblePasswordOnScreenReset() => _passColorSolutionOnScreen.text = "--";
+    public void VisiblePasswordOnScreenReset() => _passColorSolutionOnScreen.text = "";
 
     public void CancelLastNumber()
     {
@@ -193,5 +206,39 @@ public class SecondaryTasks : MonoBehaviour
             1
         );
         PasswordColorVerification();
+    }
+
+    //Attivazione dei GameObject dopo risoluzione dei puzzle
+    public void ActivationPuzzleCheck()
+    {
+        switch (_passColorSolution)
+        {
+            case "1234":
+                ActiveEmailsCycle1();
+                StartCoroutine(ShowAnswer(1));
+                break;
+
+            case "2341":
+                StartCoroutine(ShowAnswer(1));
+                //Inserire attivazione
+                break;
+
+            default:
+                Debug.Log(
+                    $"La Password: {_passColorSolution}, non corrisponde a nessuna soluzione possibile."
+                );
+                StartCoroutine(ShowAnswer(2));
+                ResetPassword();
+                VisiblePasswordOnScreenReset();
+                break;
+        }
+    }
+
+    public void ActiveEmailsCycle1()
+    {
+        //Attivo le email già in "ScenarioProgressManager"
+        _soProgressManager.EmailAfterMetaGame = true;
+        _soProgressManager.InstantWorkButton = true;
+        ScenarioProgressManager.instance.ProgressCluesManagerCycle1();
     }
 }

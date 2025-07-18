@@ -23,6 +23,14 @@ public class SOProgressManager : ScriptableObject
         CycleGame03 = false,
         CycleGame04 = false;
 
+    //Gestione degli elementi InGame sbloccati con il progresso della storia
+    //Elementi che devono essere attivi nelle run successive
+    public bool EmailAfterMetaGame = false, //Cycle1-
+        InstantWorkButton = false, //Cycle1-
+        WebSite1Cycle1 = false, //Cycle1-
+        WebSite2Cycle1 = false, //Cycle1-
+        AllCluesCycle1Found = false; //Cycle1-
+
     public void SaveProgressParameters(int cycle, int phase, int awake, int finalUnlock) //Salva tutti i parametri con il progredire del gioco, usando come riferimento il GameManager
     {
         CycleNumber = cycle;
@@ -90,5 +98,18 @@ public class SOProgressManager : ScriptableObject
         Phase1 = false;
         Phase2 = false;
         Phase3 = false;
+    }
+
+    public bool CheckCluesCycle1()
+    {
+        if (
+            EmailAfterMetaGame == true
+            && InstantWorkButton == true
+            && WebSite1Cycle1 == true
+            && WebSite2Cycle1 == true
+        )
+            return true;
+        else
+            return false;
     }
 }

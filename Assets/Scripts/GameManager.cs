@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
                 FadeIn();
                 StartCoroutine(MessageWorkFinished());
                 yield return new WaitForSeconds(timeToWait);
-                if (CycleNumber == 0)
+                if (CycleNumber == 0 || CycleNumber == 1)
                     ChangeDayScene(DaySceneState.dead);
                 else
                     ChangeDayScene(DaySceneState.day05);
@@ -147,6 +147,8 @@ public class GameManager : MonoBehaviour
         switch (newDaySceneState)
         {
             case DaySceneState.day01:
+                if (_soProgressManager.AllCluesCycle1Found == true)
+                    ScenarioProgressManager.instance.InstantActiveAllCluesCycle1();
                 _deadGameOverMessage.gameObject.SetActive(false);
                 ScenarioProgressManager.instance.SeasonManager();
                 if (AwakeNumberScene != 0)
@@ -185,7 +187,7 @@ public class GameManager : MonoBehaviour
                 _restartButton.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 AwakeNumberScene = 0;
-                CycleControlForStory();
+                ControlForAllCluesCycle1();
                 if (CycleNumber == 0)
                 {
                     NewCycle();
@@ -193,7 +195,10 @@ public class GameManager : MonoBehaviour
                         NewPhase();
                     _soProgressManager.Phase1True();
                     _soProgressManager.EternalCycleTrue();
+                    _soProgressManager.CycleGame01True();
                 }
+                CycleControlForStory();
+
                 break;
 
             default:
@@ -330,7 +335,8 @@ public class GameManager : MonoBehaviour
 
     public void ResetProgressParameters() => _soProgressManager.ResetAllParametersForDebugTest();
 
-    //Metodi per l'attivazione di eventi in base al Cycle & Phase
+    //Metodi per l'attivazione di eventi in base al Cycle & Phase----
+    //---------------------------------------------------------------
     public void CycleControlForStory()
     {
         if (CycleNumber == 0) //Appena il giocatore capisce le meccaniche essenziali del gioco ed il personaggio muore la prima volta.
@@ -343,6 +349,7 @@ public class GameManager : MonoBehaviour
             _soProgressManager.NewPassNeedCheck() == true
             && _soProgressManager.GameOutOfGameCheck() == true
             && _soProgressManager.Phase1Check() == true
+            && _soProgressManager.AllCluesCycle1Found == true
         )
         {
             _soProgressManager.CycleGame02True();
@@ -373,6 +380,12 @@ public class GameManager : MonoBehaviour
     public void Phase2True() => _soProgressManager.Phase2True();
 
     public void Phase3True() => _soProgressManager.Phase3True();
+
+    public void ControlForAllCluesCycle1()
+    {
+        if (_soProgressManager.CheckCluesCycle1() == true)
+            _soProgressManager.AllCluesCycle1Found = true;
+    }
 }
 
 public enum DaySceneState

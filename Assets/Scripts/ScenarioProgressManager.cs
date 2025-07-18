@@ -51,7 +51,10 @@ public class ScenarioProgressManager : MonoBehaviour
     private GameObject _roomClueObjectPhase01_B; //Postit, biglietti da visita(num. binari)
 
     [SerializeField]
-    private GameObject _roomClueObjectPhase01_C; //Rivista e fogli sulla scrivania
+    private GameObject[] _roomClueObjectPhase01_C; //Email nuove
+
+    [SerializeField]
+    private GameObject[] _roomClueObjectPhase01_D; //Siti sul browser
 
     [SerializeField]
     private GameObject _instantFinishWorkButton; //Pulsante per finire il lavoro istantaneamente
@@ -60,7 +63,7 @@ public class ScenarioProgressManager : MonoBehaviour
     private GameObject _roomClueObjectPhase02;
 
     [SerializeField]
-    private GameObject _roomClueObjectPhase02_A;
+    private GameObject _roomClueObjectPhase02_A; //Rivista e fogli sulla scrivania
 
     [SerializeField]
     private GameObject _roomClueObjectPhase02_B;
@@ -133,7 +136,7 @@ public class ScenarioProgressManager : MonoBehaviour
 
     public void RoomAndCluesManager()
     {
-        ProgressCluesManager();
+        ProgressCluesManagerCycle1();
         switch (GameManager.instance.PhaseManager)
         {
             case 1:
@@ -153,7 +156,7 @@ public class ScenarioProgressManager : MonoBehaviour
         }
     }
 
-    public void ProgressCluesManager()
+    public void ProgressCluesManagerCycle1()
     {
         Debug.LogWarning($"---Verificando attivazione indizi---");
         if ( //Verifiche per attivare gli indizi della Phase 1
@@ -163,16 +166,46 @@ public class ScenarioProgressManager : MonoBehaviour
         )
         {
             _roomClueObjectPhase01_A.SetActive(true);
+
             if (
                 _soProgressManager.GameOutOfGameCheck() == true
                 && _soProgressManager.AwakeNumber >= 2
             )
             {
                 _roomClueObjectPhase01_B.SetActive(true);
+            }
+
+            if (_soProgressManager.InstantWorkButton == true)
                 _instantFinishWorkButton.SetActive(true);
+
+            if (
+                _soProgressManager.GameOutOfGameCheck() == true
+                && _soProgressManager.AwakeNumber >= 3
+                && _soProgressManager.EmailAfterMetaGame == true
+            )
+            {
+                foreach (GameObject roomClueObjectPhase01_C in _roomClueObjectPhase01_C)
+                    roomClueObjectPhase01_C.SetActive(true);
+            }
+
+            if (
+                _soProgressManager.GameOutOfGameCheck() == true
+                && _soProgressManager.AwakeNumber >= 4
+            )
+            {
+                foreach (GameObject roomClueObjectPhase01_D in _roomClueObjectPhase01_D)
+                    roomClueObjectPhase01_D.SetActive(true);
             }
         }
-        if (_soProgressManager.AwakeNumber >= 4)
-            _roomClueObjectPhase01_C.SetActive(true);
+    }
+
+    public void InstantActiveAllCluesCycle1()
+    {
+        _roomClueObjectPhase01_A.SetActive(true);
+        _roomClueObjectPhase01_B.SetActive(true);
+        _roomClueObjectPhase01_C[0].SetActive(true);
+        _roomClueObjectPhase01_C[1].SetActive(true);
+        _roomClueObjectPhase01_D[0].SetActive(true);
+        _roomClueObjectPhase01_D[1].SetActive(true);
     }
 }

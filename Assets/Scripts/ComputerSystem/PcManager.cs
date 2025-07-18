@@ -1,4 +1,6 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PcManager : MonoBehaviour
 {
@@ -98,6 +100,12 @@ public class PcManager : MonoBehaviour
     [SerializeField]
     private Material _screenPhase03;
 
+    [Header("Browser pages")]
+    [SerializeField]
+    private RawImage _pageObjectForBrowser;
+
+    [SerializeField]
+    private Texture[] _browserPages;
 
     public SOProgressManager _soProgressManager;
     private bool _isPcOn = false;
@@ -244,6 +252,31 @@ public class PcManager : MonoBehaviour
                 break;
         }
     }
+
+    public void BrowserPagesManager(int indexPage)
+    {
+        switch (indexPage)
+        {
+            case 1:
+                _pageObjectForBrowser.texture = _browserPages[0];
+                break;
+            case 2:
+                _pageObjectForBrowser.texture = _browserPages[1];
+                _soProgressManager.WebSite1Cycle1 = true;
+                break;
+            case 3:
+                _pageObjectForBrowser.texture = _browserPages[2];
+                _soProgressManager.WebSite2Cycle1 = true;
+                break;
+            case 4:
+                _pageObjectForBrowser.texture = _browserPages[3];
+                break;
+            default:
+                Debug.Log($"There is no page with the index {indexPage}");
+                break;
+        }
+    }
+
     public void PCOff()
     {
         _isPcOn = false;
