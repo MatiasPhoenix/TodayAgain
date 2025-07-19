@@ -182,19 +182,23 @@ public class ScenarioProgressManager : MonoBehaviour
                 _soProgressManager.GameOutOfGameCheck() == true
                 && _soProgressManager.AwakeNumber >= 3
                 && _soProgressManager.EmailAfterMetaGame == true
+                && _roomClueObjectPhase01_C[0].activeSelf == false
             )
             {
                 foreach (GameObject roomClueObjectPhase01_C in _roomClueObjectPhase01_C)
                     roomClueObjectPhase01_C.SetActive(true);
+                PcManager.instance.AlertIconActivation(0, true);
             }
 
             if (
                 _soProgressManager.GameOutOfGameCheck() == true
                 && _soProgressManager.AwakeNumber >= 4
+                && _roomClueObjectPhase01_D[0].activeSelf == false
             )
             {
                 foreach (GameObject roomClueObjectPhase01_D in _roomClueObjectPhase01_D)
                     roomClueObjectPhase01_D.SetActive(true);
+                PcManager.instance.AlertIconActivation(1, true);
             }
         }
     }

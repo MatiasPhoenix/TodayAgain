@@ -107,6 +107,13 @@ public class PcManager : MonoBehaviour
     [SerializeField]
     private Texture[] _browserPages;
 
+    [Header("Alerts Icons")]
+    [SerializeField]
+    private GameObject[] _alertsIconsCycle1;
+
+    [SerializeField]
+    private GameObject[] _alertsIconsCycle2;
+
     public SOProgressManager _soProgressManager;
     private bool _isPcOn = false;
 
@@ -274,6 +281,45 @@ public class PcManager : MonoBehaviour
             default:
                 Debug.Log($"There is no page with the index {indexPage}");
                 break;
+        }
+    }
+
+    public void AlertForButtons(int buttonNumer) => AlertIconActivation(buttonNumer, false);
+
+    public void AlertIconActivation(int iconNumber, bool active)
+    {
+        if (_soProgressManager.CycleNumber == 1)
+        {
+            switch (iconNumber)
+            {
+                case 0:
+                    _alertsIconsCycle1[0].SetActive(active);
+                    break;
+                case 1:
+                    _alertsIconsCycle1[1].SetActive(active);
+                    break;
+                default:
+                    Debug.Log($"There is no icon with the index {iconNumber}");
+                    break;
+            }
+        }
+        else if (_soProgressManager.CycleNumber == 2)
+        {
+            switch (iconNumber)
+            {
+                case 0:
+                    _alertsIconsCycle2[0].SetActive(active);
+                    break;
+                case 1:
+                    _alertsIconsCycle2[1].SetActive(active);
+                    break;
+                case 2:
+                    _alertsIconsCycle2[2].SetActive(active);
+                    break;
+                default:
+                    Debug.Log($"There is no icon with the index {iconNumber}");
+                    break;
+            }
         }
     }
 
