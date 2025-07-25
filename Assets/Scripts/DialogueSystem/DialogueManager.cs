@@ -6,12 +6,18 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(gameObject);
-            return;
+            Instance = this;
         }
+        else
+            Destroy(gameObject);
+    }
 
-        Instance = this;
+    //Dialoghi programmatore
+    //
+    public void DialoguesCylce01()
+    {
+        Dialogue.DialoguesMetod(0, 0);
     }
 }

@@ -1,71 +1,74 @@
-// using UnityEngine;
+public static class Dialogue
+{
+    public static string DialoguesMetod(int numberSpeaker, int enumDialogue)
+    {
+        //numberSpeaker: 0 = Programmer, 1 = Soul
+        //enumDialogue: 0 = Programmer, 1 = Soul
 
-// [System.Serializable]
-// public class Dialogue
-// {
-//     [TextArea]
-//     public string Testo;
+        if (numberSpeaker == 0) //Programmer parla
+        {
+            switch (enumDialogue) //quale dialogo si attiva
+            { //scelto il dialogo si attiva direttamente chi lo dice in base al altro parametro
+                case 1:
+                    return DialogueProgrammer(DialogueEnumProgrammer.Room);
 
-//     public int CurrentMessage;
-//     public int Scena;
-//     public LoreFlags loreFlags;
-//     public int FinaliSbloccati;
-//     public bool PC,
-//         Mirror,
-//         SoulTalk;
+                case 2:
+                    return DialogueProgrammer(DialogueEnumProgrammer.Computer);
 
-//     public bool CorrectDialogue(
-//         int scenaCorrente,
-//         int finaliAttuali,
-//         string contestoAttuale,
-//         ProgressManager pm
-//     )
-//     {
-//         if (Scena != scenaCorrente)
-//             return false;
-//         if (FinaliSbloccati != finaliAttuali)
-//             return false;
+                case 3:
+                    return DialogueProgrammer(DialogueEnumProgrammer.Mirror);
 
-//         bool momentoValido =
-//             (PC && contestoAttuale == "PC")
-//             || (Mirror && contestoAttuale == "Mirror")
-//             || (SoulTalk && contestoAttuale == "SoulTalk");
+                case 4:
+                    return DialogueProgrammer(DialogueEnumProgrammer.Chair);
 
-//         if (!momentoValido)
-//             return false;
+                default:
+                    return "Default";
+            }
+        }
+        else //Soul parla
+        {
+            switch (enumDialogue) //quale dialogo si attiva
+            { //scelto il dialogo si attiva direttamente chi lo dice in base al altro parametro
+                case 1:
+                    return DialogueSoul(DialogueEnumSoul.SoulRoom);
 
-//         if (!loreFlags.IsCompatibleWith(pm))
-//             return false;
+                case 2:
+                    return DialogueSoul(DialogueEnumSoul.SoulComputer);
 
-//         return true;
-//     }
-// }
+                case 3:
+                    return DialogueSoul(DialogueEnumSoul.SoulMirror);
 
-// [System.Serializable]
-// public class LoreFlags
-// {
-//     public bool EternalCycle;
-//     public bool NewPassNeed;
-//     public bool GameOutOfGame;
-//     public bool Fase1;
-//     public bool Fase2;
-//     public bool Fase3;
+                case 4:
+                    return DialogueSoul(DialogueEnumSoul.SoulChair);
 
-//     public bool IsCompatibleWith(ProgressManager pm)
-//     {
-//         if (EternalCycle && !pm.EternalCycle)
-//             return false;
-//         if (NewPassNeed && !pm.NewPassNeed)
-//             return false;
-//         if (GameOutOfGame && !pm.GameOutOfGame)
-//             return false;
-//         if (Fase1 && !pm.Fase1)
-//             return false;
-//         if (Fase2 && !pm.Fase2)
-//             return false;
-//         if (Fase3 && !pm.Fase3)
-//             return false;
+                default:
+                    return "Default";
+            }
+        }
+    }
 
-//         return true;
-//     }
-// }
+    static string DialogueProgrammer(DialogueEnumProgrammer dialogueEnumProgrammer)
+    {
+        return "Programmer";
+    }
+    static string DialogueSoul(DialogueEnumSoul dialogueEnumSoul)
+    {
+        return "Soul";
+    }
+}
+
+enum DialogueEnumProgrammer
+{
+    Room,
+    Computer,
+    Mirror,
+    Chair,
+}
+
+enum DialogueEnumSoul
+{
+    SoulRoom,
+    SoulComputer,
+    SoulMirror,
+    SoulChair,
+}

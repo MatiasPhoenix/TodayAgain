@@ -24,28 +24,27 @@
 //             switch (i)
 //             {
 //                 case 0:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Ciclo eterno", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Ciclo eterno", prop.boolValue);
+//                     break;
 //                 case 1:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Extra pass", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Extra pass", prop.boolValue);
+//                     break;
 //                 case 2:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Gioco esterno", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Gioco esterno", prop.boolValue);
+//                     break;
 //                 case 3:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Fase 1", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Fase 1", prop.boolValue);
+//                     break;
 //                 case 4:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Fase 2", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Fase 2", prop.boolValue);
+//                     break;
 //                 case 5:
-//                 prop.boolValue = EditorGUILayout.Toggle($"Fase 3", prop.boolValue);
-//                 break;
+//                     prop.boolValue = EditorGUILayout.Toggle($"Fase 3", prop.boolValue);
+//                     break;
 
 //                 default:
-//                 break;
+//                     break;
 //             }
-            
 //         }
 //         EditorGUI.indentLevel--;
 
