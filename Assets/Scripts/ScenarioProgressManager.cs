@@ -28,7 +28,12 @@ public class ScenarioProgressManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _fallObject;
+
+    [SerializeField]
+    private GameObject _fallTreeObject;
     private GameObject[] _seasons;
+    private Color _basicColor = new Color(1f, 1f, 1f, 1f);
+    private Color _fallColor = new Color(1f, 0.45f, 0f, 1f);
 
     // [SerializeField] private GameObject _winterClueObject1;
     // [SerializeField] private GameObject _winterClueObject2;
@@ -92,6 +97,8 @@ public class ScenarioProgressManager : MonoBehaviour
     private int _seasonNumberManager = 0;
     public SOProgressManager _soProgressManager;
 
+    private void Start() => FallTextureForTrees();
+
     public void SetSeasonNumber() => _seasonNumberManager++;
 
     public void ResetSeasonNumber() => _seasonNumberManager = 1;
@@ -110,28 +117,34 @@ public class ScenarioProgressManager : MonoBehaviour
             or 2:
                 SetActiveSeasonOff();
                 _winterObject.SetActive(true);
+                FallTextureForTrees();
+                Debug.LogWarning($"Season: WINTER");
                 break;
             case 3
             or 4:
                 SetActiveSeasonOff();
                 _summerObject.SetActive(true);
+                FallTextureForTrees();
+                Debug.LogWarning($"Season: SUMMER");
                 break;
             case 5
             or 6:
                 SetActiveSeasonOff();
                 _springObject.SetActive(true);
+                FallTextureForTrees();
+                Debug.LogWarning($"Season: SPRING");
                 break;
             case 7
             or 8:
                 SetActiveSeasonOff();
                 _fallObject.SetActive(true);
+                FallTextureForTrees();
+                Debug.LogWarning($"Season: FALL");
                 break;
         }
         SetSeasonNumber();
         if (_seasonNumberManager == 9)
             ResetSeasonNumber();
-
-        Debug.LogWarning($"Season: {_seasonNumberManager}");
     }
 
     public void RoomAndCluesManager()
@@ -201,6 +214,16 @@ public class ScenarioProgressManager : MonoBehaviour
                 PcManager.instance.AlertIconActivation(1, true);
             }
         }
+    }
+
+    void FallTextureForTrees()
+    {
+        Renderer rend = _fallTreeObject.GetComponent<Renderer>();
+
+        if (_fallObject.activeSelf)
+            rend.sharedMaterial.SetColor("_BaseColor", _fallColor);
+        else
+            rend.sharedMaterial.SetColor("_BaseColor", _basicColor);
     }
 
     public void InstantActiveAllCluesCycle1()

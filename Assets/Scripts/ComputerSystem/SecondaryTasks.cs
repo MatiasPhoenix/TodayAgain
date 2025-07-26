@@ -213,7 +213,7 @@ public class SecondaryTasks : MonoBehaviour
     {
         switch (_passColorSolution)
         {
-            case "1234":
+            case "6345": //Blu-Verde-Rosso-Giallo
                 ActiveEmailsCycle1();
                 StartCoroutine(ShowAnswer(1));
                 break;

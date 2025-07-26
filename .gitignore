@@ -35,7 +35,9 @@ UserSettings/
 # Plugin o framework ScriptableObject (modifica path se serve)
 Assets/ThirdParty/
 Assets/Plugins/ScriptableObjectFramework/
-Assets/LowPolyTreesPack/
+Assets/Low Poly Trees Pack/
+Assets/LowPolyInterior/
+Assets/Toon Suburban Pack/
 
 # ScriptableObject asset instances temporanei (facoltativo)
 # *.asset
