@@ -29,5 +29,5 @@ MonoBehaviour:
   EmailAfterMetaGame: 1
   InstantWorkButton: 1
   WebSite1Cycle1: 1
-  WebSite2Cycle1: 1
-  AllCluesCycle1Found: 1
+  WebSite2Cycle1: 0
+  AllCluesCycle1Found: 0

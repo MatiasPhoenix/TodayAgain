@@ -98,6 +98,15 @@ public class SOProgressManager : ScriptableObject
         Phase1 = false;
         Phase2 = false;
         Phase3 = false;
+        CycleGame01 = false;
+        CycleGame02 = false;
+        CycleGame03 = false;
+        CycleGame04 = false;
+        EmailAfterMetaGame = false;
+        InstantWorkButton = false;
+        WebSite1Cycle1 = false;
+        WebSite2Cycle1 = false;
+        AllCluesCycle1Found = false;
     }
 
     public bool CheckCluesCycle1()
