@@ -3,7 +3,8 @@ using UnityEngine;
 public class EmailManager : MonoBehaviour
 {
     [Header("Emails Windows")]
-    [SerializeField] private GameObject[] _emailsBodys;
+    [SerializeField]
+    private GameObject[] _emailsBodys;
 
     public void OpenEmail(int index)
     {
@@ -11,5 +12,4 @@ public class EmailManager : MonoBehaviour
             _emailsBodys[i].SetActive(false);
         _emailsBodys[index].SetActive(true);
     }
-
 }

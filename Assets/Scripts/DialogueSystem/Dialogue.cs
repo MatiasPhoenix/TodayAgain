@@ -1,74 +1,112 @@
+using System.Collections.Generic;
+
 public static class Dialogue
 {
-    public static string DialoguesMetod(int numberSpeaker, int enumDialogue)
-    {
-        //numberSpeaker: 0 = Programmer, 1 = Soul
-        //enumDialogue: 0 = Programmer, 1 = Soul
-
-        if (numberSpeaker == 0) //Programmer parla
+    // struttura: Speaker -> Topic -> lista di frasi
+    private static readonly Dictionary<Speaker, Dictionary<Topic, List<string>>> _dialogues =
+        new Dictionary<Speaker, Dictionary<Topic, List<string>>>()
         {
-            switch (enumDialogue) //quale dialogo si attiva
-            { //scelto il dialogo si attiva direttamente chi lo dice in base al altro parametro
-                case 1:
-                    return DialogueProgrammer(DialogueEnumProgrammer.Room);
+            {
+                Speaker.Programmer,
+                new Dictionary<Topic, List<string>>()
+                {
+                    {
+                        Topic.Room,
+                        new List<string> { "prova room" }
+                    },
+                    {
+                        Topic.Computer,
+                        new List<string>
+                        {
+                            "Oggi lavoro sugli script",
+                            "Provo a correggere il bug di ieri",
+                            "Dov'ero rimasto?",
+                            "Non so come funzionerà... ci provo",
+                            "Dopo mi faccio un'altro caffè",
+                        }
+                    },
+                    {
+                        Topic.Mirror,
+                        new List<string> { "sto na' merda...", "mmh", "dovrei farmi la barba" }
+                    },
+                    {
+                        Topic.Chair,
+                        new List<string> { "prova chair" }
+                    },
+                }
+            },
+            {
+                Speaker.Soul,
+                new Dictionary<Topic, List<string>>()
+                {
+                    {
+                        Topic.Room,
+                        new List<string>
+                        {
+                            "finalmente riesci a sentirmi",
+                            "adesso 'completare il lavoro' sarà veloce...",
+                            "leggi le email",
+                            "nel prossimo risveglio... novità",
+                            "lui l'ha sempre odiato",
+                            "ricordo quel giorno...",
+                        }
+                    },
+                    {
+                        Topic.Computer,
+                        new List<string> { "prova soul computer" }
+                    },
+                    {
+                        Topic.Mirror,
+                        new List<string> { "prova soul mirror" }
+                    },
+                    {
+                        Topic.Chair,
+                        new List<string> { "prova soul chair" }
+                    },
+                    {
+                        Topic.Email,
+                        new List<string> { "adesso capirai alcune cose" }
+                    },
+                    {
+                        Topic.MetaGame,
+                        new List<string> { "prova soul chair" }
+                    },
+                    {
+                        Topic.SoulComment,
+                        new List<string> { "commento dell'anima, semplice prova" }
+                    }
+                }
+            },
+        };
 
-                case 2:
-                    return DialogueProgrammer(DialogueEnumProgrammer.Computer);
-
-                case 3:
-                    return DialogueProgrammer(DialogueEnumProgrammer.Mirror);
-
-                case 4:
-                    return DialogueProgrammer(DialogueEnumProgrammer.Chair);
-
-                default:
-                    return "Default";
-            }
-        }
-        else //Soul parla
-        {
-            switch (enumDialogue) //quale dialogo si attiva
-            { //scelto il dialogo si attiva direttamente chi lo dice in base al altro parametro
-                case 1:
-                    return DialogueSoul(DialogueEnumSoul.SoulRoom);
-
-                case 2:
-                    return DialogueSoul(DialogueEnumSoul.SoulComputer);
-
-                case 3:
-                    return DialogueSoul(DialogueEnumSoul.SoulMirror);
-
-                case 4:
-                    return DialogueSoul(DialogueEnumSoul.SoulChair);
-
-                default:
-                    return "Default";
-            }
-        }
-    }
-
-    static string DialogueProgrammer(DialogueEnumProgrammer dialogueEnumProgrammer)
+    public static string GetDialogue(Speaker speaker, Topic topic, int index)
     {
-        return "Programmer";
-    }
-    static string DialogueSoul(DialogueEnumSoul dialogueEnumSoul)
-    {
-        return "Soul";
+        if (!_dialogues.TryGetValue(speaker, out var topicDict))
+            return $"Missing speaker: {speaker}";
+
+        if (!topicDict.TryGetValue(topic, out var lines))
+            return $"Missing topic: {topic} for speaker {speaker}";
+
+        if (index < 0 || index >= lines.Count)
+            return $"Invalid dialogue index: {index} for {speaker}/{topic}";
+
+        return lines[index];
     }
 }
 
-enum DialogueEnumProgrammer
+public enum Speaker
+{
+    Programmer,
+    Soul,
+}
+
+public enum Topic
 {
     Room,
     Computer,
     Mirror,
     Chair,
-}
-
-enum DialogueEnumSoul
-{
-    SoulRoom,
-    SoulComputer,
-    SoulMirror,
-    SoulChair,
+    Email,
+    MetaGame,
+    SoulComment,
 }

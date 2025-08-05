@@ -106,6 +106,8 @@ public class PcManager : MonoBehaviour
 
     [SerializeField]
     private Texture[] _browserPages;
+    [SerializeField]
+    private GameObject _forumButtonsForNavigation;
 
     [Header("Alerts Icons")]
     [SerializeField]
@@ -266,13 +268,16 @@ public class PcManager : MonoBehaviour
         {
             case 1:
                 _pageObjectForBrowser.texture = _browserPages[0];
+                _forumButtonsForNavigation.SetActive(false);
                 break;
             case 2:
                 _pageObjectForBrowser.texture = _browserPages[1];
+                _forumButtonsForNavigation.SetActive(false);
                 _soProgressManager.WebSite1Cycle1 = true;
                 break;
             case 3:
                 _pageObjectForBrowser.texture = _browserPages[2];
+                _forumButtonsForNavigation.SetActive(true);
                 _soProgressManager.WebSite2Cycle1 = true;
                 break;
             case 4:

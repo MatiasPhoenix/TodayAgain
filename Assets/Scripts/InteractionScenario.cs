@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class InteractionScenario : MonoBehaviour
@@ -8,23 +9,24 @@ public class InteractionScenario : MonoBehaviour
     private GameObject _chairPcObject;
 
     [SerializeField]
-    private GameObject _pcMessage;
+    private TextMeshProUGUI _pcMessage;
+    private bool _pcActive = false;
 
     [SerializeField]
     private GameObject _mirrorObject;
 
     [SerializeField]
-    private GameObject _mirrorMessage;
+    private TextMeshProUGUI _mirrorMessage;
 
     private float _timerCount = 0f;
 
     private void Update()
     {
         if (_mirrorObject.activeSelf && Input.GetKeyDown(KeyCode.E))
-            MirrorInteractionMessage();
+            MirrorInteractionMessage("Mirror", GetRandomNumber(0, 2));
 
         if (_chairPcObject.activeSelf && Input.GetKeyDown(KeyCode.E))
-            PcInteractionMessage();
+            PcInteractionMessage("Computer", GetRandomNumber(0, 4));
     }
 
     public void OnTriggerEnter(Collider other)
@@ -38,37 +40,41 @@ public class InteractionScenario : MonoBehaviour
     public void OnTriggerExit()
     {
         _chairPcObject.SetActive(false);
-        _pcMessage.SetActive(false);
+        _pcMessage.text = "";
         _mirrorObject.SetActive(false);
-        _mirrorMessage.SetActive(false);
+        _mirrorMessage.text = "";
     }
 
-    void MirrorInteractionMessage()
+    void MirrorInteractionMessage(string topic, int index)
     {
         _timerCount = 3f;
         _mirrorObject.SetActive(false);
-        _mirrorMessage.SetActive(true);
+        _mirrorMessage.text = DialogueManager.Instance.DialogueProgrammer(topic, index);
         StartCoroutine(ActiveTimer());
     }
 
-    void PcInteractionMessage()
+    void PcInteractionMessage(string topic, int index)
     {
+        _pcActive = true;
         _timerCount = 3f;
         _chairPcObject.SetActive(false);
-        _pcMessage.SetActive(true);
+        _mirrorMessage.text = DialogueManager.Instance.DialogueProgrammer(topic, index);
         StartCoroutine(ActiveTimer());
     }
 
     private IEnumerator ActiveTimer()
     {
         yield return new WaitForSeconds(_timerCount);
-        if (_pcMessage.activeSelf)
+        if (_pcActive)
         {
             PcManager.instance.GoToWorkOnPc();
             GameManager.instance.CourutineBoxCollider();
         }
 
-        _mirrorMessage.SetActive(false);
-        _pcMessage.SetActive(false);
+        _mirrorMessage.text = "";
+        _pcMessage.text = "";
+        _pcActive = false;
     }
+
+    private int GetRandomNumber(int min, int max) => Random.Range(min, max + 1);
 }
