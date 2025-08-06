@@ -79,6 +79,7 @@ public class DialogueManager : MonoBehaviour
                 return _soulMessage.text = $"Missing topic: {topic} for speaker {Speaker.Soul}";
         }
     }
+
     public void TestSoulDialogue()
     {
         if (_soProgressManager.GameOutOfGameCheck() == false)
