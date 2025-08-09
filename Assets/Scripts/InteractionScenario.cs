@@ -8,15 +8,15 @@ public class InteractionScenario : MonoBehaviour
     [SerializeField]
     private GameObject _chairPcObject;
 
-    [SerializeField]
-    private TextMeshProUGUI _pcMessage;
+    // [SerializeField]
+    // private TextMeshProUGUI _pcMessage;
     private bool _pcActive = false;
 
     [SerializeField]
     private GameObject _mirrorObject;
 
-    [SerializeField]
-    private TextMeshProUGUI _mirrorMessage;
+    // [SerializeField]
+    // private TextMeshProUGUI _mirrorMessage;
 
     private float _timerCount = 0f;
 
@@ -40,25 +40,27 @@ public class InteractionScenario : MonoBehaviour
     public void OnTriggerExit()
     {
         _chairPcObject.SetActive(false);
-        _pcMessage.text = "";
+        // _pcMessage.text = "";
         _mirrorObject.SetActive(false);
-        _mirrorMessage.text = "";
+        // _mirrorMessage.text = "";
     }
 
     void MirrorInteractionMessage(string topic, int index)
     {
         _timerCount = 3f;
         _mirrorObject.SetActive(false);
-        _mirrorMessage.text = DialogueManager.Instance.DialogueProgrammer(topic, index);
+        DialogueManager.Instance.DialogueProgrammer(topic, index);
         StartCoroutine(ActiveTimer());
     }
 
     void PcInteractionMessage(string topic, int index)
     {
+        if (SoundManager.Instance.IsPlaying(3) == false)
+            SoundManager.Instance.PlayComputerSound(3, 0);
         _pcActive = true;
         _timerCount = 3f;
         _chairPcObject.SetActive(false);
-        _mirrorMessage.text = DialogueManager.Instance.DialogueProgrammer(topic, index);
+        DialogueManager.Instance.DialogueProgrammer(topic, index);
         StartCoroutine(ActiveTimer());
     }
 
@@ -71,8 +73,8 @@ public class InteractionScenario : MonoBehaviour
             GameManager.instance.CourutineBoxCollider();
         }
 
-        _mirrorMessage.text = "";
-        _pcMessage.text = "";
+        // _mirrorMessage.text = "";
+        // _pcMessage.text = "";
         _pcActive = false;
     }
 

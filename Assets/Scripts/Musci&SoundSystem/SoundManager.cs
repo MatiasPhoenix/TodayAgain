@@ -48,4 +48,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMessageAlertSound(int audioSourceNumber, int soundNumber) =>
         _audioSources[audioSourceNumber].PlayOneShot(_messageAlertSounds[soundNumber]);
+
+    public bool IsPlaying(int audioSourceNumber) => _audioSources[audioSourceNumber].isPlaying;
 }

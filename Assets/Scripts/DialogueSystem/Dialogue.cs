@@ -27,7 +27,7 @@ public static class Dialogue
                     },
                     {
                         Topic.Mirror,
-                        new List<string> { "sto na' merda...", "mmh", "dovrei farmi la barba" }
+                        new List<string> { "Sto na' merda...", "Mmh", "Dovrei farmi la barba" }
                     },
                     {
                         Topic.Chair,
@@ -44,7 +44,6 @@ public static class Dialogue
                         new List<string>
                         {
                             "finalmente riesci a sentirmi",
-                            "adesso 'completare il lavoro' sarà veloce...",
                             "leggi le email",
                             "nel prossimo risveglio... novità",
                             "lui l'ha sempre odiato",
@@ -53,7 +52,14 @@ public static class Dialogue
                     },
                     {
                         Topic.Computer,
-                        new List<string> { "prova soul computer" }
+                        new List<string>
+                        {
+                            "ora cominci a vedere",
+                            "leggi le email",
+                            "le persone parlano tanto",
+                            "adesso 'completare il lavoro' sarà più facile...",
+                            "da qui tutto cambia, inizierai a capire molto di più, spero tu sia pronto...",
+                        }
                     },
                     {
                         Topic.Mirror,
@@ -61,11 +67,16 @@ public static class Dialogue
                     },
                     {
                         Topic.Chair,
-                        new List<string> { "prova soul chair" }
+                        new List<string> { "........" }
                     },
                     {
                         Topic.Email,
-                        new List<string> { "adesso capirai alcune cose" }
+                        new List<string>
+                        {
+                            "adesso capirai alcune cose",
+                            "indizi, fuori...",
+                            "e da qui andrai oltre il nostro limite...",
+                        }
                     },
                     {
                         Topic.MetaGame,
@@ -73,14 +84,26 @@ public static class Dialogue
                     },
                     {
                         Topic.SoulComment,
-                        new List<string> { "commento dell'anima, semplice prova" }
-                    }
+                        new List<string>
+                        {
+                            "non temere, questa non è la fine",
+                            "hai visto come passa il tempo?",
+                            "credevi che questo fosse solo un gioco, vero?",
+                            "hai viso la scrivania? che pena questa situazione...",
+                            "tranquillo, la fine di ogni ciclo ti aiuterà a capire meglio",
+                        }
+                    },
                 }
             },
         };
 
     public static string GetDialogue(Speaker speaker, Topic topic, int index)
     {
+        if (speaker == Speaker.Soul)
+            SoundManager.Instance.PlayTalkSound(2, 2);
+        else
+            SoundManager.Instance.PlayTalkSound(2, 0);
+
         if (!_dialogues.TryGetValue(speaker, out var topicDict))
             return $"Missing speaker: {speaker}";
 

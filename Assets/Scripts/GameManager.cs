@@ -147,9 +147,16 @@ public class GameManager : MonoBehaviour
         switch (newDaySceneState)
         {
             case DaySceneState.day01:
+                SoundManager.Instance.StopMusic(3);
                 if (_soProgressManager.AllCluesCycle1Found == true)
                     ScenarioProgressManager.instance.InstantActiveAllCluesCycle1();
                 _deadGameOverMessage.gameObject.SetActive(false);
+                if (CycleNumber == 0)
+                    ScenarioProgressManager.instance.MySeasonChoice(1);
+                if (CycleNumber == 1)
+                    ScenarioProgressManager.instance.MySeasonChoice(5);
+                if (CycleNumber == 0)
+                    ScenarioProgressManager.instance.MySeasonChoice(3);
                 ScenarioProgressManager.instance.SeasonManager();
                 if (AwakeNumberScene != 0)
                     SafeRestartPlayerPosition();
@@ -158,9 +165,15 @@ public class GameManager : MonoBehaviour
                 DayHelpMethod();
                 if (_soProgressManager.EternalCycleCheck() == true)
                     ScenarioProgressManager.instance.RoomAndCluesManager();
+                if (CycleNumber == 1)
+                    StartCoroutine(DialogueManager.Instance.DialogueSoulAndTimer("Room", 0, 3));
                 break;
             case DaySceneState.day02:
                 RestartDaySceneConfiguration();
+                if (CycleNumber == 1)
+                    StartCoroutine(
+                        DialogueManager.Instance.DialogueSoulAndTimer("SoulComment", 3, 3)
+                    );
                 break;
             case DaySceneState.day03:
                 RestartDaySceneConfiguration();
@@ -182,7 +195,14 @@ public class GameManager : MonoBehaviour
                 break;
             case DaySceneState.dead:
                 //GameOver for this cycle
-                Debug.LogWarning($"Game Over!");
+                if (CycleNumber == 0)
+                    StartCoroutine(
+                        DialogueManager.Instance.DialogueSoulAndTimer("SoulComment", 0, 1)
+                    );
+                if (CycleNumber == 1)
+                    StartCoroutine(
+                        DialogueManager.Instance.DialogueSoulAndTimer("SoulComment", 4, 1)
+                    );
                 _deadGameOverMessage.gameObject.SetActive(true);
                 _restartButton.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
@@ -209,6 +229,7 @@ public class GameManager : MonoBehaviour
 
     void RestartDaySceneConfiguration()
     {
+        SoundManager.Instance.StopMusic(3);
         SafeRestartPlayerPosition();
         FadeOut();
         AwakeNumberScene++;

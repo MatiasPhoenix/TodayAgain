@@ -358,6 +358,7 @@ public class WorkSpaceManager : MonoBehaviour
     {
         if (_workComplete)
         {
+            SoundManager.Instance.PlayMessageAlertSound(1, 1);
             _greatWorkMessage.SetActive(true);
             if (_check1.color != Color.green && _check1.color != Color.red)
                 _check1.color = Color.green;
@@ -368,6 +369,7 @@ public class WorkSpaceManager : MonoBehaviour
         }
         else
         {
+            SoundManager.Instance.PlayMessageAlertSound(1, 2);
             _badWorkMessage.SetActive(true);
             if (_check1.color != Color.green && _check1.color != Color.red)
                 _check1.color = Color.red;
@@ -412,6 +414,7 @@ public class WorkSpaceManager : MonoBehaviour
             _check2.color = Color.white;
             _check3.color = Color.white;
             _tasksCompleted = 1;
+            SoundManager.Instance.PlayMessageAlertSound(1, 6);
         }
         else
         {

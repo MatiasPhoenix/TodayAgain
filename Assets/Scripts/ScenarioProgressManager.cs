@@ -94,7 +94,7 @@ public class ScenarioProgressManager : MonoBehaviour
     // [SerializeField] private GameObject _bathroomClueObject2;
     // [SerializeField] private GameObject _bathroomClueObject3;
 
-    private int _seasonNumberManager = 0;
+    private int _seasonNumberManager = 1;
     public SOProgressManager _soProgressManager;
 
     private void Start() => FallTextureForTrees();
@@ -102,6 +102,10 @@ public class ScenarioProgressManager : MonoBehaviour
     public void SetSeasonNumber() => _seasonNumberManager++;
 
     public void ResetSeasonNumber() => _seasonNumberManager = 1;
+
+    public int GetSeasonNumber() => _seasonNumberManager;
+
+    public void MySeasonChoice(int seasonNumber) => _seasonNumberManager = seasonNumber;
 
     void SetActiveSeasonOff()
     {
@@ -174,7 +178,6 @@ public class ScenarioProgressManager : MonoBehaviour
         Debug.LogWarning($"---Verificando attivazione indizi---");
         if ( //Verifiche per attivare gli indizi della Phase 1
             _soProgressManager.Phase1Check() == true
-            && _roomClueObjectPhase01.activeSelf
             && _soProgressManager.NewPassNeedCheck() == true
         )
         {

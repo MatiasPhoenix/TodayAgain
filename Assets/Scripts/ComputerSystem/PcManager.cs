@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -106,6 +107,7 @@ public class PcManager : MonoBehaviour
 
     [SerializeField]
     private Texture[] _browserPages;
+
     [SerializeField]
     private GameObject _forumButtonsForNavigation;
 
@@ -128,18 +130,27 @@ public class PcManager : MonoBehaviour
             case 0:
                 _pcObjectCycle00.SetActive(true);
                 _pcDesktopCycle00.SetActive(true);
+                SoundManager.Instance.PlayComputerSound(1, 1);
                 break;
             case 1:
                 _pcObjectCycle01.SetActive(true);
                 _pcDesktopCycle01.SetActive(true);
+                SoundManager.Instance.PlayComputerSound(1, 1);
                 break;
             case 2:
                 _pcObjectCycle02.SetActive(true);
                 _pcDesktopCycle02.SetActive(true);
+                SoundManager.Instance.PlayComputerSound(1, 1);
+                if (
+                    GameManager.instance.AwakeNumberScene == 1
+                    && _soProgressManager.CycleGame02Check() == true
+                )
+                    StartCoroutine(DialogueManager.Instance.DialogueSoulAndTimer("Computer", 4, 1));
                 break;
             case 3:
                 _pcObjectCycle03.SetActive(true);
                 _pcDesktopCycle03.SetActive(true);
+                SoundManager.Instance.PlayComputerSound(1, 1);
                 break;
             default:
                 break;
@@ -147,6 +158,7 @@ public class PcManager : MonoBehaviour
         _cameraPcObject.SetActive(true);
         _playerObject.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
+        StartCoroutine(ControlForNewElementAlert());
     }
 
     public void ExitFromPc()
@@ -277,6 +289,8 @@ public class PcManager : MonoBehaviour
                 break;
             case 3:
                 _pageObjectForBrowser.texture = _browserPages[2];
+                if (_soProgressManager.WebSite2Cycle1 == false)
+                    StartCoroutine(DialogueManager.Instance.DialogueSoulAndTimer("Computer", 2, 1));
                 _forumButtonsForNavigation.SetActive(true);
                 _soProgressManager.WebSite2Cycle1 = true;
                 break;
@@ -333,4 +347,27 @@ public class PcManager : MonoBehaviour
         _isPcOn = false;
         _screenPCObject.GetComponent<MeshRenderer>().material = _screenOff;
     }
+
+    IEnumerator ControlForNewElementAlert()
+    {
+        foreach (var item in _alertsIconsCycle1)
+        {
+            if (item.activeSelf)
+            {
+                yield return new WaitForSeconds(1f);
+                SoundManager.Instance.PlayMessageAlertSound(2, 5);
+            }
+        }
+        foreach (var item in _alertsIconsCycle2)
+        {
+            if (item.activeSelf)
+            {
+                yield return new WaitForSeconds(1f);
+                SoundManager.Instance.PlayMessageAlertSound(2, 5);
+            }
+        }
+    }
+
+    public void ActiveSoulDialogue(int index) =>
+        StartCoroutine(DialogueManager.Instance.DialogueSoulAndTimer("Computer", index, 1));
 }

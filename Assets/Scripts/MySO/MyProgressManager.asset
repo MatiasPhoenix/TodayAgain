@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6da6c817727fb4f9e363523381c29f, type: 3}
   m_Name: MyProgressManager
   m_EditorClassIdentifier: 
-  CycleNumber: 0
-  PhaseNumber: 0
-  AwakeNumber: 1
+  CycleNumber: 2
+  PhaseNumber: 1
+  AwakeNumber: 0
   FinalUnlock: 0
-  EternalCycle: 0
-  NewPassNeed: 0
-  GameOutOfGame: 0
-  Phase1: 0
+  EternalCycle: 1
+  NewPassNeed: 1
+  GameOutOfGame: 1
+  Phase1: 1
   Phase2: 0
   Phase3: 0
-  CycleGame01: 0
-  CycleGame02: 0
+  CycleGame01: 1
+  CycleGame02: 1
   CycleGame03: 0
   CycleGame04: 0
-  EmailAfterMetaGame: 0
-  InstantWorkButton: 0
-  WebSite1Cycle1: 0
-  WebSite2Cycle1: 0
-  AllCluesCycle1Found: 0
+  EmailAfterMetaGame: 1
+  InstantWorkButton: 1
+  WebSite1Cycle1: 1
+  WebSite2Cycle1: 1
+  AllCluesCycle1Found: 1

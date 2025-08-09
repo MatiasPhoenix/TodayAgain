@@ -20,77 +20,125 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _soulMessage;
 
+    [Header("Programmer Dialogue")]
+    [SerializeField]
+    private TextMeshProUGUI _programmerMessage;
+
     [Header("SO Progress Manager")]
     [SerializeField]
     private SOProgressManager _soProgressManager;
 
     //Dialoghi programmatore
     //
-    public string DialogueProgrammer(string topic, int index)
+    public void DialogueProgrammer(string topic, int index)
     {
-        string dialogue;
         switch (topic)
         {
             case "Room":
-                return dialogue = Dialogue.GetDialogue(Speaker.Programmer, Topic.Room, index);
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Programmer, Topic.Room, index, _programmerMessage)
+                );
+                break;
             case "Computer":
-                return dialogue = Dialogue.GetDialogue(Speaker.Programmer, Topic.Computer, index);
+                StartCoroutine(
+                    TypeCurrentSentence(
+                        Speaker.Programmer,
+                        Topic.Computer,
+                        index,
+                        _programmerMessage
+                    )
+                );
+                break;
             case "Mirror":
-                return dialogue = Dialogue.GetDialogue(Speaker.Programmer, Topic.Mirror, index);
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Programmer, Topic.Mirror, index, _programmerMessage)
+                );
+                break;
             case "Chair":
-                return dialogue = Dialogue.GetDialogue(Speaker.Programmer, Topic.Chair, index);
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Programmer, Topic.Chair, index, _programmerMessage)
+                );
+                break;
             default:
-                return dialogue = $"Missing topic: {topic} for speaker {Speaker.Programmer}";
+                _programmerMessage.text =
+                    $"Missing topic: {topic} for speaker {Speaker.Programmer}";
+                break;
         }
     }
 
-    public string SoulDialogue(string topic, int index)
+    public void SoulDialogue(string topic, int index)
     {
-        StartCoroutine(ResetSoulMessage());
         switch (topic)
         {
             case "Room":
-                return _soulMessage.text = Dialogue.GetDialogue(Speaker.Soul, Topic.Room, index);
+                StartCoroutine(TypeCurrentSentence(Speaker.Soul, Topic.Room, index, _soulMessage));
+                break;
             case "Computer":
-                return _soulMessage.text = Dialogue.GetDialogue(
-                    Speaker.Soul,
-                    Topic.Computer,
-                    index
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Soul, Topic.Computer, index, _soulMessage)
                 );
+                break;
             case "Mirror":
-                return _soulMessage.text = Dialogue.GetDialogue(Speaker.Soul, Topic.Mirror, index);
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Soul, Topic.Mirror, index, _soulMessage)
+                );
+                break;
             case "Chair":
-                return _soulMessage.text = Dialogue.GetDialogue(Speaker.Soul, Topic.Chair, index);
+                StartCoroutine(TypeCurrentSentence(Speaker.Soul, Topic.Chair, index, _soulMessage));
+                break;
             case "Email":
-                return _soulMessage.text = Dialogue.GetDialogue(Speaker.Soul, Topic.Email, index);
+                StartCoroutine(TypeCurrentSentence(Speaker.Soul, Topic.Email, index, _soulMessage));
+                break;
             case "MetaGame":
-                return _soulMessage.text = Dialogue.GetDialogue(
-                    Speaker.Soul,
-                    Topic.MetaGame,
-                    index
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Soul, Topic.MetaGame, index, _soulMessage)
                 );
+                break;
             case "SoulComment":
-                return _soulMessage.text = Dialogue.GetDialogue(
-                    Speaker.Soul,
-                    Topic.SoulComment,
-                    index
+                StartCoroutine(
+                    TypeCurrentSentence(Speaker.Soul, Topic.SoulComment, index, _soulMessage)
                 );
+                break;
             default:
-                return _soulMessage.text = $"Missing topic: {topic} for speaker {Speaker.Soul}";
+                _soulMessage.text = $"Missing topic: {topic} for speaker {Speaker.Soul}";
+                break;
         }
     }
 
-    public void TestSoulDialogue()
+    public IEnumerator DialogueSoulAndTimer(string topic, int index, int timer)
     {
-        if (_soProgressManager.GameOutOfGameCheck() == false)
+        yield return new WaitForSeconds(timer);
+        SoulDialogue(topic, index);
+    }
+
+    void ResetSoulMessage() => _soulMessage.text = "";
+
+    public IEnumerator TypeCurrentSentence(
+        Speaker speaker,
+        Topic topic,
+        int index,
+        TextMeshProUGUI targetText,
+        float textSpeed = 0.08f
+    )
+    {
+        targetText.text = "";
+
+        string sentence = Dialogue.GetDialogue(speaker, topic, index);
+
+        foreach (char letter in sentence)
         {
-            SoulDialogue("Email", 0);
+            targetText.text += letter;
+            yield return new WaitForSeconds(textSpeed);
         }
-    }
 
-    IEnumerator ResetSoulMessage()
-    {
-        yield return new WaitForSeconds(3f);
-        _soulMessage.text = "";
+        SoundManager.Instance.StopMusic(2);
+        if (speaker == Speaker.Programmer)
+            yield return new WaitForSeconds(2f);
+        if (speaker == Speaker.Soul)
+        {
+            yield return new WaitForSeconds(3f);
+            ResetSoulMessage();
+        }
+        targetText.text = "";
     }
 }

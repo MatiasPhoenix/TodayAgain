@@ -16,7 +16,6 @@ public class ForumScript : MonoBehaviour
 
     public void BrowserPagesManager(int indexPage)
     {
-        Debug.Log($"STO CLICCANDOOOOOOOOOOOOOOOOOO");
         switch (indexPage)
         {
             case 0:

@@ -137,6 +137,7 @@ public class SecondaryTasks : MonoBehaviour
                 break;
             case 2:
                 _badAnswer.SetActive(true);
+                SoundManager.Instance.PlayMessageAlertSound(1, 2);
                 yield return new WaitForSeconds(elapsedTime);
                 _badAnswer.SetActive(false);
                 break;
@@ -213,9 +214,11 @@ public class SecondaryTasks : MonoBehaviour
     {
         switch (_passColorSolution)
         {
-            case "6345": //Blu-Verde-Rosso-Giallo
+            case "6345": //Blu-Verde-Rosso-Giallo (foto dispari nella cartella)
                 ActiveEmailsCycle1();
                 StartCoroutine(ShowAnswer(1));
+                StartCoroutine(DialogueManager.Instance.DialogueSoulAndTimer("Computer", 3, 1));
+                SoundManager.Instance.PlayMessageAlertSound(1, 0);
                 break;
 
             case "2341":
